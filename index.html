@@ -65,12 +65,18 @@ img,video{max-width:100%}
 .poster-section>:not(.poster-bg){position:relative;z-index:2}
 .script{font-family:'Great Vibes',cursive;font-weight:400}
 
-/* FAMILY */
+/* FAMILY - SMOOTH TEXT ENTRANCE */
 #family{min-height:100svh;display:flex;align-items:center;justify-content:center}
 .family-content{
   position:relative;z-index:2;width:100%;max-width:385px;margin:auto;
   padding:18px 20px;color:#806047;text-align:center;
   text-shadow:0 1px 2px rgba(255,248,239,.75);
+  animation:familyReveal 2.2s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes familyReveal{
+  0%{opacity:0;transform:translateY(35px);filter:blur(5px)}
+  65%{opacity:1;filter:blur(0)}
+  100%{opacity:1;transform:translateY(0);filter:blur(0)}
 }
 .family-arabic{font-size:19px;line-height:1.5;color:#806047;margin-bottom:1px}
 .family-translation{font-size:12px;font-style:italic;color:#806047;margin-bottom:9px}
@@ -140,59 +146,53 @@ img,video{max-width:100%}
 }
 .revealed #scratchCanvas{opacity:0;transition:opacity .6s;pointer-events:none}
 
-/* LAST TWO VIDEO SECTIONS - SLIGHTLY SHORTER */
+/* VIDEO SECTIONS */
 .video-section{
   position:relative;width:100%;min-height:94svh;height:94svh;
-  padding:5vh 0 22px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:14px;
+  padding:4vh 0 22px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;
   overflow:hidden;background:#f8edf1;
 }
 
-/* BABY PINK MILAD HEADING */
+/* MILAD HEADING */
 .event-heading{
   position:relative;z-index:3;
-  width:92%;margin:2vh auto 0;
+  width:92%;margin:1vh auto 0;
   font-family:'Great Vibes',cursive;
   font-size:clamp(30px,7vw,40px);
   line-height:1.15;color:#e8a9c2;
   text-shadow:0 1px 8px rgba(255,255,255,.85);
 }
 
-/* BOTH VIDEOS - SAME SQUARE SIZE + CURVED CORNERS */
+/* BOTH VIDEO FRAMES - SAME SIZE, SLIGHTLY NARROWER */
 .video-card{
   position:relative;z-index:2;
-  width:min(84vw,390px);
+  width:min(80vw,370px);
   aspect-ratio:1/1;
   height:auto;
   flex:0 0 auto;
-  margin:2vh auto 0;
+  margin:1vh auto 0;
   padding:0;
   background:rgba(255,249,251,.65);
   border:1px solid rgba(218,171,192,.7);
-  border-radius:22px;
+  border-radius:20px;
   box-shadow:0 8px 25px rgba(110,70,85,.15);
   overflow:hidden;
 }
-.video-card::before{display:none}
 .video-card video{
   display:block;width:100%;height:100%;max-width:none;
   object-fit:contain;object-position:center;
-  background:transparent;border:0;border-radius:22px;
+  background:transparent;border:0;border-radius:20px;
 }
 
-/* MILAD VIDEO */
-#milad-section .video-card{
-  width:min(84vw,390px);
-  aspect-ratio:1/1;
-  margin-top:2vh;
-}
-
-/* NIKKAH VIDEO - SAME SIZE AS MILAD */
+/* MILAD AND NIKKAH - IDENTICAL FRAME DIMENSIONS */
+#milad-section .video-card,
 #nikkah-section .video-card{
-  width:min(84vw,390px);
+  width:min(80vw,370px);
   aspect-ratio:1/1;
   height:auto;
-  margin-top:4vh;
+  margin:1vh auto 0;
 }
 
 /* MAP BUTTON BELOW VIDEO */
@@ -230,11 +230,11 @@ img,video{max-width:100%}
 }
 .countdown-unit{min-width:48px;display:flex;flex-direction:column;align-items:center}
 
-/* DAYS MORE RIGHT, HOURS SLIGHTLY RIGHT, MINUTES SLIGHTLY LEFT, SECONDS MORE LEFT */
-.countdown-unit:nth-child(1){transform:translateX(14px)}
-.countdown-unit:nth-child(2){transform:translateX(3px)}
+/* DAYS MORE RIGHT AND SECONDS MORE LEFT */
+.countdown-unit:nth-child(1){transform:translateX(18px)}
+.countdown-unit:nth-child(2){transform:translateX(5px)}
 .countdown-unit:nth-child(3){transform:translateX(-3px)}
-.countdown-unit:nth-child(4){transform:translateX(-14px)}
+.countdown-unit:nth-child(4){transform:translateX(-30px)}
 
 .countdown-number{
   font-family:'Cormorant Garamond',serif;
@@ -247,19 +247,19 @@ img,video{max-width:100%}
   color:#f7c7d9;text-transform:uppercase;
 }
 
-/* GIFTS */
+/* GIFTS - SMALLER FRAMES */
 #gift-section{
   min-height:100svh;height:100svh;
   padding:12px 16px 30px;
   flex-direction:column;justify-content:center;
-  align-items:center;gap:12px;
+  align-items:center;gap:10px;
 }
 #gift-section .poster-bg{
   object-fit:cover;object-position:center top;
 }
 .gift-content,.gift-closing-frame{
   position:relative;z-index:2;
-  width:min(100%,430px);margin:0 auto;
+  width:min(88%,370px);margin:0 auto;
   background:rgba(255,249,251,.88);
   border:1px solid rgba(218,171,192,.85);
   border-radius:14px;
@@ -267,14 +267,14 @@ img,video{max-width:100%}
   text-align:center;color:#936c7d;
   transform:translateY(-3vh);
 }
-.gift-content{padding:18px 17px}
-.gift-heading{font-family:'Great Vibes',cursive;font-size:32px;font-weight:400;color:#bd829d;margin:0}
-.gift-heart{font-size:24px;color:#e3a7bf;margin:3px 0}
-.gift-message{font-size:14px;line-height:1.4}
-.gift-arabic{direction:rtl;font-size:19px;line-height:1.7;color:#a27388;margin-top:9px}
-.gift-closing-frame{width:min(100%,360px);padding:15px 18px}
-.gift-closing{font-family:'Great Vibes',cursive;font-size:28px;color:#bd829d;font-weight:400;line-height:1.2;margin:0}
-.gift-family{font-size:15px;font-weight:600;color:#a27388;margin-top:8px}
+.gift-content{padding:14px 15px}
+.gift-heading{font-family:'Great Vibes',cursive;font-size:29px;font-weight:400;color:#bd829d;margin:0}
+.gift-heart{font-size:21px;color:#e3a7bf;margin:2px 0}
+.gift-message{font-size:13px;line-height:1.35}
+.gift-arabic{direction:rtl;font-size:17px;line-height:1.6;color:#a27388;margin-top:7px}
+.gift-closing-frame{width:min(82%,320px);padding:11px 14px}
+.gift-closing{font-family:'Great Vibes',cursive;font-size:25px;color:#bd829d;font-weight:400;line-height:1.2;margin:0}
+.gift-family{font-size:14px;font-weight:600;color:#a27388;margin-top:6px}
 
 /* MUSIC */
 #music-button{
@@ -301,42 +301,44 @@ img,video{max-width:100%}
   .live-countdown{bottom:24%}
   .countdown-unit{min-width:45px}
   .countdown-label{font-size:8px;letter-spacing:.8px}
-  .gift-content{padding:16px 14px}
-  .gift-message{font-size:13px}
-  .gift-arabic{font-size:17px;margin-top:7px}
-  .gift-closing-frame{padding:13px 15px}
+  .gift-content{width:88%;padding:13px 12px}
+  .gift-heading{font-size:27px}
+  .gift-message{font-size:12px}
+  .gift-arabic{font-size:16px;margin-top:6px}
+  .gift-closing-frame{width:82%;padding:10px 12px}
+  .gift-closing{font-size:23px}
+  .gift-family{font-size:13px}
   .video-section{
     min-height:94svh;height:94svh;
     gap:12px;padding:4vh 0 20px;
   }
   .video-card{
-    width:84vw;
-    margin-top:2vh;
-    border-radius:20px;
+    width:80vw;
+    margin-top:1vh;
+    border-radius:18px;
   }
-  .video-card video{border-radius:20px}
+  .video-card video{border-radius:18px}
   #milad-section .video-card,
   #nikkah-section .video-card{
-    width:84vw;
+    width:80vw;
     aspect-ratio:1/1;
     height:auto;
   }
-  #nikkah-section .video-card{margin-top:3vh}
-  .event-heading{font-size:31px;margin-top:2vh}
+  #nikkah-section .video-card{margin-top:1vh}
+  .event-heading{font-size:31px;margin-top:1vh}
 }
 @media(max-height:700px){
-  #gift-section{gap:8px;padding:12px}
-  .gift-content{padding:12px}
-  .gift-heading{font-size:28px}
-  .gift-message{font-size:12px}
-  .gift-arabic{font-size:16px;margin-top:5px}
-  .gift-closing-frame{padding:10px 14px}
-  .gift-closing{font-size:25px}
-  .gift-family{font-size:13px;margin-top:5px}
+  #gift-section{gap:7px;padding:12px}
+  .gift-content{padding:10px 12px}
+  .gift-heading{font-size:25px}
+  .gift-message{font-size:11px}
+  .gift-arabic{font-size:15px;margin-top:4px}
+  .gift-closing-frame{padding:9px 12px}
+  .gift-closing{font-size:22px}
+  .gift-family{font-size:12px;margin-top:4px}
   .video-section{min-height:92svh;height:92svh}
-  .video-card{width:min(76vw,350px)}
   #milad-section .video-card,
-  #nikkah-section .video-card{width:min(76vw,350px)}
+  #nikkah-section .video-card{width:min(74vw,340px)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
