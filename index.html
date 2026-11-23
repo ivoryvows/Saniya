@@ -156,20 +156,20 @@ img,video{max-width:100%}
   overflow:hidden;background:#f8edf1;
 }
 
-/* MILAD HEADING */
+/* MILAD HEADING - MOVED SLIGHTLY UP */
 .event-heading{
   position:relative;z-index:3;
-  width:92%;margin:1vh auto 0;
+  width:92%;margin:-1vh auto 0;
   font-family:'Great Vibes',cursive;
   font-size:clamp(30px,7vw,40px);
   line-height:1.15;color:#e8a9c2;
   text-shadow:0 1px 8px rgba(255,255,255,.85);
 }
 
-/* BOTH VIDEO FRAMES - SAME SIZE */
+/* BOTH VIDEO FRAMES - SAME BIGGER SIZE */
 .video-card{
   position:relative;z-index:2;
-  width:min(80vw,370px);
+  width:min(86vw,400px);
   aspect-ratio:1/1;
   height:auto;
   flex:0 0 auto;
@@ -182,7 +182,7 @@ img,video{max-width:100%}
   overflow:hidden;
 }
 
-/* ORIGINAL VIDEO PROPORTIONS - NO HORIZONTAL STRETCH */
+/* VIDEO CONTENT SLIGHTLY LARGER - FRAME STAYS SAME */
 .video-card video{
   display:block;
   width:100%;
@@ -195,13 +195,13 @@ img,video{max-width:100%}
   border-radius:20px;
   position:relative;
   left:auto;
-  transform:none;
+  transform:scale(1.08);
 }
 
-/* MILAD AND NIKKAH - IDENTICAL FRAME DIMENSIONS */
+/* MILAD AND NIKKAH - EXACTLY IDENTICAL FRAME DIMENSIONS */
 #milad-section .video-card,
 #nikkah-section .video-card{
-  width:min(80vw,370px);
+  width:min(86vw,400px);
   aspect-ratio:1/1;
   height:auto;
   margin:1vh auto 0;
@@ -242,9 +242,9 @@ img,video{max-width:100%}
 }
 .countdown-unit{min-width:48px;display:flex;flex-direction:column;align-items:center}
 .countdown-unit:nth-child(1){transform:translateX(28px)}
-.countdown-unit:nth-child(2){transform:translateX(1px)}
-.countdown-unit:nth-child(3){transform:translateX(-2px)}
-.countdown-unit:nth-child(4){transform:translateX(-42px)}
+.countdown-unit:nth-child(2){transform:translateX(7px)}
+.countdown-unit:nth-child(3){transform:translateX(-3px)}
+.countdown-unit:nth-child(4){transform:translateX(-45px)}
 .countdown-number{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(25px,7vw,34px);font-weight:700;
@@ -284,7 +284,7 @@ img,video{max-width:100%}
 
 /* CLOSING FRAME - SAME WIDTH AS VIDEO FRAMES */
 .gift-closing-frame{
-  width:min(80vw,370px);
+  width:min(86vw,400px);
   min-height:150px;
   padding:20px 14px;
   display:flex;
@@ -324,7 +324,7 @@ img,video{max-width:100%}
   .gift-heading{font-size:27px}
   .gift-message{font-size:12px}
   .gift-arabic{font-size:16px;margin-top:6px}
-  .gift-closing-frame{width:80vw;min-height:140px;padding:16px 12px}
+  .gift-closing-frame{width:86vw;min-height:140px;padding:16px 12px}
   .gift-closing{font-size:23px}
   .gift-family{font-size:13px}
   .video-section{
@@ -332,19 +332,19 @@ img,video{max-width:100%}
     gap:12px;padding:4vh 0 20px;
   }
   .video-card{
-    width:80vw;
+    width:86vw;
     margin-top:1vh;
     border-radius:18px;
   }
   .video-card video{border-radius:18px}
   #milad-section .video-card,
   #nikkah-section .video-card{
-    width:80vw;
+    width:86vw;
     aspect-ratio:1/1;
     height:auto;
   }
   #nikkah-section .video-card{margin-top:1vh}
-  .event-heading{font-size:31px;margin-top:1vh}
+  .event-heading{font-size:31px;margin-top:-1vh}
 }
 @media(max-height:700px){
   #gift-section{gap:7px;padding:12px}
@@ -357,7 +357,7 @@ img,video{max-width:100%}
   .gift-family{font-size:12px;margin-top:4px}
   .video-section{min-height:92svh;height:92svh}
   #milad-section .video-card,
-  #nikkah-section .video-card{width:min(74vw,340px)}
+  #nikkah-section .video-card{width:min(86vw,400px)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -427,7 +427,7 @@ img,video{max-width:100%}
 <!-- COUNTDOWN -->
 <section class="poster-section" id="countdown">
   <img class="poster-bg" src="countdown.jpg" alt="">
-  <video class="countdown-video" id="countdown-video" src="countdown.mov" muted playsinline preload="auto"></video>
+  <video class="countdown-video" id="countdown-video" src="countdown.mov" muted playsinline webkit-playsinline preload="auto"></video>
   <div class="live-countdown" aria-label="Countdown to 19 January 2027">
     <div class="countdown-units">
       <div class="countdown-unit"><span class="countdown-number" id="days">00</span></div>
@@ -475,7 +475,7 @@ img,video{max-width:100%}
   <img class="poster-bg" src="events.JPG" alt="">
   <h2 class="event-heading">Join Us for the Celebrations</h2>
   <div class="video-card">
-    <video class="scroll-video" id="milad-video" src="milad.mov" muted playsinline preload="metadata"></video>
+    <video class="scroll-video" id="milad-video" src="milad.mov" muted playsinline webkit-playsinline preload="metadata"></video>
   </div>
   <a class="map-button" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Alimentos+Banquet+Ahmedabad">View on Map ↗</a>
 </section>
@@ -484,7 +484,7 @@ img,video{max-width:100%}
 <section class="poster-section video-section" id="nikkah-section">
   <img class="poster-bg" src="events.JPG" alt="">
   <div class="video-card">
-    <video class="scroll-video" id="nikkah-video" src="nikkah.MOV" muted playsinline preload="metadata"></video>
+    <video class="scroll-video" id="nikkah-video" src="nikkah.MOV" muted playsinline webkit-playsinline preload="metadata"></video>
   </div>
   <a class="map-button" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Golden+Pearl+Banquet+Ahmedabad">View on Map ↗</a>
 </section>
@@ -810,8 +810,50 @@ const miladVideo=document.getElementById("milad-video");
 const nikkahVideo=document.getElementById("nikkah-video");
 const countdownVideo=document.getElementById("countdown-video");
 
-const COUNTDOWN_LOOP_START=5*60+22;
-const COUNTDOWN_LOOP_END=42*60;
+let countdownLoopStart=0;
+let countdownLoopReady=false;
+let countdownStarted=false;
+
+countdownVideo.muted=true;
+countdownVideo.playsInline=true;
+
+countdownVideo.addEventListener("loadedmetadata",()=>{
+  const duration=countdownVideo.duration;
+
+  if(isFinite(duration)&&duration>0){
+    countdownLoopStart=Math.max(0,duration-30);
+    countdownLoopReady=true;
+  }
+});
+
+/* START COUNTDOWN FROM ITS FINAL 30 SECONDS */
+function startCountdownVideo(){
+  if(!countdownLoopReady){
+    if(countdownVideo.readyState>=1){
+      const duration=countdownVideo.duration;
+      if(isFinite(duration)&&duration>0){
+        countdownLoopStart=Math.max(0,duration-30);
+        countdownLoopReady=true;
+      }
+    }
+  }
+
+  if(!countdownLoopReady){
+    countdownVideo.addEventListener("loadedmetadata",startCountdownVideo,{once:true});
+    return;
+  }
+
+  if(!countdownStarted){
+    countdownStarted=true;
+    try{
+      countdownVideo.currentTime=countdownLoopStart;
+    }catch(error){}
+  }
+
+  countdownVideo.play().catch(error=>{
+    console.log("Countdown video autoplay issue:",error);
+  });
+}
 
 const videoSections=[
   {section:document.getElementById("countdown"),video:countdownVideo},
@@ -825,46 +867,35 @@ const videoObserver=new IntersectionObserver(entries=>{
     if(!video)return;
 
     if(entry.isIntersecting){
-      if(video===countdownVideo&&!video.dataset.started){
-        video.dataset.started="true";
-        try{countdownVideo.currentTime=0}catch(e){}
+      if(video===countdownVideo){
+        startCountdownVideo();
+      }else{
+        video.play().catch(error=>{
+          console.log("Video autoplay issue. Check the video file and browser settings:",error);
+        });
       }
-
-      video.play().catch(error=>{
-        console.log("Video autoplay issue. Check the video file and browser settings:",error);
-      });
     }else{
       video.pause();
+
       if(video!==countdownVideo){
         try{video.currentTime=0}catch(e){}
       }
     }
   });
-},{threshold:0.01,rootMargin:"0px"});
+},{threshold:0.15,rootMargin:"0px"});
 
 videoSections.forEach(item=>videoObserver.observe(item.section));
 
-/* COUNTDOWN LOOPS FROM 5:22 TO 42:00 */
+/* LOOP ONLY THE FINAL 30 SECONDS OF COUNTDOWN VIDEO */
 countdownVideo.addEventListener("timeupdate",()=>{
-  if(!isFinite(countdownVideo.duration))return;
+  if(!countdownLoopReady)return;
 
-  if(countdownVideo.currentTime>=COUNTDOWN_LOOP_END-.15){
-    countdownVideo.currentTime=COUNTDOWN_LOOP_START;
+  if(countdownVideo.currentTime>=countdownVideo.duration-0.15){
+    countdownVideo.currentTime=countdownLoopStart;
+
     if(!countdownVideo.paused){
       countdownVideo.play().catch(()=>{});
     }
-  }
-});
-
-/* START COUNTDOWN AS SOON AS IT IS READY AND VISIBLE */
-countdownVideo.addEventListener("canplay",()=>{
-  const rect=document.getElementById("countdown").getBoundingClientRect();
-  const visible=rect.top<window.innerHeight&&rect.bottom>0;
-
-  if(visible){
-    countdownVideo.play().catch(error=>{
-      console.log("Countdown video could not autoplay:",error);
-    });
   }
 });
 </script>
