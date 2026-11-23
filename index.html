@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,54 +140,59 @@ img,video{max-width:100%}
 }
 .revealed #scratchCanvas{opacity:0;transition:opacity .6s;pointer-events:none}
 
-/* EVENT VIDEO SECTIONS */
+/* LAST TWO VIDEO SECTIONS - SLIGHTLY SHORTER */
 .video-section{
-  position:relative;width:100%;min-height:100svh;height:auto;
-  padding:4vh 0 22px;display:flex;flex-direction:column;
+  position:relative;width:100%;min-height:94svh;height:94svh;
+  padding:5vh 0 22px;display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:14px;
   overflow:hidden;background:#f8edf1;
 }
 
-/* MILAD HEADING */
+/* BABY PINK MILAD HEADING */
 .event-heading{
   position:relative;z-index:3;
-  width:92%;margin:0 auto;
+  width:92%;margin:2vh auto 0;
   font-family:'Great Vibes',cursive;
-  font-size:clamp(29px,7vw,39px);
-  line-height:1.15;color:#a87891;
-  text-shadow:0 1px 8px rgba(255,255,255,.8);
+  font-size:clamp(30px,7vw,40px);
+  line-height:1.15;color:#e8a9c2;
+  text-shadow:0 1px 8px rgba(255,255,255,.85);
 }
 
-/* MILAD VIDEO - LARGE DISPLAY */
+/* BOTH VIDEOS - SAME SQUARE SIZE + CURVED CORNERS */
 .video-card{
   position:relative;z-index:2;
-  width:94%;height:72svh;flex:0 0 auto;
-  margin:0 auto;padding:0;
-  background:transparent;border:0;border-radius:0;
-  box-shadow:none;overflow:hidden;
+  width:min(84vw,390px);
+  aspect-ratio:1/1;
+  height:auto;
+  flex:0 0 auto;
+  margin:2vh auto 0;
+  padding:0;
+  background:rgba(255,249,251,.65);
+  border:1px solid rgba(218,171,192,.7);
+  border-radius:22px;
+  box-shadow:0 8px 25px rgba(110,70,85,.15);
+  overflow:hidden;
 }
 .video-card::before{display:none}
 .video-card video{
   display:block;width:100%;height:100%;max-width:none;
   object-fit:contain;object-position:center;
-  background:transparent;border:0;border-radius:0;
+  background:transparent;border:0;border-radius:22px;
 }
 
-/* MILAD VIDEO PLACEMENT */
+/* MILAD VIDEO */
 #milad-section .video-card{
-  width:94%;height:70svh;margin:0 auto;
+  width:min(84vw,390px);
+  aspect-ratio:1/1;
+  margin-top:2vh;
 }
 
-/* NIKKAH VIDEO - APPROXIMATELY ONE INCH */
-#nikkah-section{
-  gap:12px;
-}
+/* NIKKAH VIDEO - SAME SIZE AS MILAD */
 #nikkah-section .video-card{
-  width:100px;height:120px;flex:0 0 auto;
-  margin-top:3vh;transform:translateY(1vh);
-}
-#nikkah-section .video-card video{
-  width:100%;height:100%;object-fit:contain;
+  width:min(84vw,390px);
+  aspect-ratio:1/1;
+  height:auto;
+  margin-top:4vh;
 }
 
 /* MAP BUTTON BELOW VIDEO */
@@ -212,7 +216,7 @@ img,video{max-width:100%}
   object-fit:cover;background:#f7edf0;z-index:1;
 }
 
-/* COUNTDOWN NUMBERS - SLIGHTLY LOWER AND BETTER ALIGNED */
+/* COUNTDOWN NUMBERS */
 .live-countdown{
   position:absolute!important;left:50%;top:auto;bottom:24%;
   transform:translateX(-50%);z-index:4!important;
@@ -225,10 +229,13 @@ img,video{max-width:100%}
   width:100%;gap:0;
 }
 .countdown-unit{min-width:48px;display:flex;flex-direction:column;align-items:center}
-.countdown-unit:nth-child(1){transform:translateX(5px)}
+
+/* DAYS MORE RIGHT, HOURS SLIGHTLY RIGHT, MINUTES SLIGHTLY LEFT, SECONDS MORE LEFT */
+.countdown-unit:nth-child(1){transform:translateX(14px)}
 .countdown-unit:nth-child(2){transform:translateX(3px)}
 .countdown-unit:nth-child(3){transform:translateX(-3px)}
-.countdown-unit:nth-child(4){transform:translateX(-5px)}
+.countdown-unit:nth-child(4){transform:translateX(-14px)}
+
 .countdown-number{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(25px,7vw,34px);font-weight:700;
@@ -240,7 +247,7 @@ img,video{max-width:100%}
   color:#f7c7d9;text-transform:uppercase;
 }
 
-/* GIFTS - BOXES MOVED UP, IMAGE CROPPED FROM BOTTOM */
+/* GIFTS */
 #gift-section{
   min-height:100svh;height:100svh;
   padding:12px 16px 30px;
@@ -298,10 +305,24 @@ img,video{max-width:100%}
   .gift-message{font-size:13px}
   .gift-arabic{font-size:17px;margin-top:7px}
   .gift-closing-frame{padding:13px 15px}
-  .video-section{gap:12px;padding:4vh 0 20px}
-  #milad-section .video-card{width:94%;height:68svh}
-  #nikkah-section .video-card{width:100px;height:120px;margin-top:3vh}
-  .event-heading{font-size:30px}
+  .video-section{
+    min-height:94svh;height:94svh;
+    gap:12px;padding:4vh 0 20px;
+  }
+  .video-card{
+    width:84vw;
+    margin-top:2vh;
+    border-radius:20px;
+  }
+  .video-card video{border-radius:20px}
+  #milad-section .video-card,
+  #nikkah-section .video-card{
+    width:84vw;
+    aspect-ratio:1/1;
+    height:auto;
+  }
+  #nikkah-section .video-card{margin-top:3vh}
+  .event-heading{font-size:31px;margin-top:2vh}
 }
 @media(max-height:700px){
   #gift-section{gap:8px;padding:12px}
@@ -312,7 +333,10 @@ img,video{max-width:100%}
   .gift-closing-frame{padding:10px 14px}
   .gift-closing{font-size:25px}
   .gift-family{font-size:13px;margin-top:5px}
-  #milad-section .video-card{height:62svh}
+  .video-section{min-height:92svh;height:92svh}
+  .video-card{width:min(76vw,350px)}
+  #milad-section .video-card,
+  #nikkah-section .video-card{width:min(76vw,350px)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
