@@ -42,16 +42,16 @@ img,video{max-width:100%}
 .family-content{position:relative;z-index:2;width:100%;max-width:385px;margin:auto;padding:18px 20px;color:#806047;text-align:center;text-shadow:0 1px 2px rgba(255,248,239,.75)}
 .family-arabic{font-size:19px;line-height:1.5;color:#806047;margin-bottom:1px}
 .family-translation{font-size:12px;font-style:italic;color:#806047;margin-bottom:9px}
-.family-greeting{font-size:27px;font-weight:700;color:#d99bb5;margin:5px 0;line-height:1.15}
+.family-greeting{font-size:24px;font-weight:700;color:#d99bb5;margin:5px 0;line-height:1.15}
 .family-blessing{font-size:14px;font-weight:500;margin:5px 0 8px;color:#806047}
-.parents{font-family:'Great Vibes',cursive;font-size:22px;font-weight:700;color:#d99bb5;margin:5px 0 9px}
+.parents{font-family:'Great Vibes',cursive;font-size:20px;font-weight:700;color:#d99bb5;margin:5px 0 9px}
 .family-description{font-size:14px;line-height:1.3;margin:7px auto;max-width:340px;color:#806047}
 .family-description .auspicious{display:block;color:#806047;font-size:14px;font-family:'Cormorant Garamond',serif;font-weight:500;margin:3px 0}
 .family-description .nikah-line{display:block;color:#806047;font-size:15px;margin:2px 0}
 .couple-name{font-family:'Great Vibes',cursive;font-size:32px;font-weight:700;color:#d99bb5;margin:5px 0 0;line-height:1.15}
 .family-relation{font-size:12px;margin:1px 0 5px;color:#806047}
 .with-text{font-size:20px;font-weight:700;color:#d99bb5;margin:2px 0}
-.family-closing{font-size:13px;font-style:italic;line-height:1.25;margin-top:8px;color:#806047}
+.family-closing{font-size:13px;font-style:italic;line-height:1.25;margin-top:15px;color:#806047}
 .family-closing span{display:block;color:#806047;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic}
 
 /* DUA */
@@ -82,7 +82,7 @@ img,video{max-width:100%}
 #scratchCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:3;touch-action:none;cursor:crosshair}
 .scratch-hint{font-size:14px;color:#b77e98;font-style:italic}
 #confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:5}
-.confetti-piece{position:absolute;top:-15px;width:5px;height:8px;border-radius:2px;animation:confettiFall 3.8s linear forwards}
+.confetti-piece{position:absolute;top:-22px;width:4px;height:7px;border-radius:2px;animation:confettiFall 4.8s linear forwards;box-shadow:0 0 7px rgba(255,232,190,.95)}
 @keyframes confettiFall{to{transform:translate3d(var(--drift),110vh,0) rotate(850deg);opacity:0}}
 .revealed #scratchCanvas{opacity:0;transition:opacity .6s;pointer-events:none}
 
@@ -100,13 +100,13 @@ img,video{max-width:100%}
 /* COUNTDOWN VIDEO */
 #countdown{min-height:100svh;padding:0;background:#f7edf0}
 .countdown-video{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;background:#f7edf0;z-index:1}
-.live-countdown{position:absolute!important;left:50%;top:9%;bottom:auto;transform:translateX(-50%);z-index:4!important;width:calc(100% - 22px);max-width:430px;color:#f1a9c5;text-shadow:0 1px 8px rgba(70,25,45,.55);pointer-events:none}
+.live-countdown{position:absolute!important;left:50%;top:auto;bottom:11%;transform:translateX(-50%);z-index:4!important;width:calc(100% - 22px);max-width:430px;color:#f1a9c5;text-shadow:0 1px 8px rgba(70,25,45,.55);pointer-events:none}
 .countdown-units{display:flex;align-items:flex-start;justify-content:space-between;width:100%;gap:0}
 .countdown-unit{min-width:48px;display:flex;flex-direction:column;align-items:center}
-.countdown-unit:nth-child(1){transform:translateX(-3px)}
-.countdown-unit:nth-child(2){transform:translateX(-1px)}
-.countdown-unit:nth-child(3){transform:translateX(3px)}
-.countdown-unit:nth-child(4){transform:translateX(8px)}
+.countdown-unit:nth-child(1){transform:translateX(7px)}
+.countdown-unit:nth-child(2){transform:translateX(4px)}
+.countdown-unit:nth-child(3){transform:translateX(-4px)}
+.countdown-unit:nth-child(4){transform:translateX(-9px)}
 .countdown-number{font-family:'Cormorant Garamond',serif;font-size:clamp(25px,7vw,34px);font-weight:700;line-height:1;color:#f3b2ca}
 .countdown-label{margin-top:6px;font-family:'DM Sans',sans-serif;font-size:9px;font-weight:600;letter-spacing:1.2px;color:#f7c7d9;text-transform:uppercase}
 
@@ -139,7 +139,7 @@ img,video{max-width:100%}
 #milad-section .video-card{margin-top:32px;width:min(58vw,210px)}
 #nikkah-section .video-card{margin-top:-8px;width:min(72vw,260px)}
 #nikkah-section .video-card video{aspect-ratio:9/16}
-.live-countdown{top:8%}
+.live-countdown{bottom:10%}
 .countdown-unit{min-width:45px}
 .countdown-label{font-size:8px;letter-spacing:.8px}
 .gift-content{padding:17px 14px}
@@ -184,7 +184,7 @@ img,video{max-width:100%}
 </section>
 
 <section class="poster-section" id="dua">
-  <img class="poster-bg" src="dua.jpg" alt="">
+  <img class="poster-bg" src="dua.JPG" alt="">
   <div class="dua-content">
     <div class="dua-box">
       <div class="dua-welcome">We are honored to welcome you to the</div>
@@ -210,10 +210,10 @@ img,video{max-width:100%}
   <video class="countdown-video" id="countdown-video" src="countdown.mov" muted playsinline preload="auto"></video>
   <div class="live-countdown" aria-label="Countdown to 19 January 2027">
     <div class="countdown-units">
-      <div class="countdown-unit"><span class="countdown-number" id="days">00</span><span class="countdown-label">Days</span></div>
-      <div class="countdown-unit"><span class="countdown-number" id="hours">00</span><span class="countdown-label">Hours</span></div>
-      <div class="countdown-unit"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">Minutes</span></div>
-      <div class="countdown-unit"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">Seconds</span></div>
+      <div class="countdown-unit"><span class="countdown-number" id="days">00</span></div>
+      <div class="countdown-unit"><span class="countdown-number" id="hours">00</span></div>
+      <div class="countdown-unit"><span class="countdown-number" id="minutes">00</span></div>
+      <div class="countdown-unit"><span class="countdown-number" id="seconds">00</span></div>
     </div>
   </div>
 </section>
@@ -244,13 +244,13 @@ img,video{max-width:100%}
 </section>
 
 <section class="poster-section video-section" id="nikkah-section">
-  <img class="poster-bg" src="events.jpg" alt="">
+  <img class="poster-bg" src="events.JPG" alt="">
   <div class="video-card"><video class="scroll-video" id="nikkah-video" src="nikkah.MOV" muted playsinline preload="metadata"></video></div>
   <a class="map-button" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Golden+Pearl+Banquet+Ahmedabad">View on Map ↗</a>
 </section>
 
 <section class="poster-section" id="gift-section">
-  <img class="poster-bg" src="events.jpg" alt="">
+  <img class="poster-bg" src="events.JPG" alt="">
   <div class="gift-content">
     <h2 class="gift-heading">Gifts</h2><div class="gift-heart">♥</div>
     <div class="gift-message">"No gift is better than your blessings. Your heartfelt duas and loving presence are all we cherish as we begin this new journey under the blessed shade and teachings of the Ahlulbayt."</div>
@@ -337,7 +337,7 @@ function checkScratch(){
 }
 function launchConfetti(){
   const holder=document.getElementById("confetti");
-  for(let i=0;i<90;i++){const piece=document.createElement("span");piece.className="confetti-piece";piece.style.left=Math.random()*100+"%";piece.style.setProperty("--drift",(Math.random()*200-100)+"px");piece.style.animationDelay=Math.random()*2+"s";piece.style.animationDuration=(3+Math.random()*3)+"s";const colors=["#f3c8da","#e8d9c5","#fff","#cdb596","#f8e0e9"];piece.style.background=colors[Math.floor(Math.random()*colors.length)];holder.appendChild(piece);setTimeout(()=>piece.remove(),7000);}
+  for(let i=0;i<150;i++){const piece=document.createElement("span");piece.className="confetti-piece";piece.style.left=Math.random()*100+"%";piece.style.setProperty("--drift",(Math.random()*200-100)+"px");piece.style.animationDelay=Math.random()*2+"s";piece.style.animationDuration=(3+Math.random()*3)+"s";const colors=["#f3c8da","#e8d9c5","#fff","#cdb596","#f8e0e9","#f6d98b","#fff4d6"];piece.style.background=colors[Math.floor(Math.random()*colors.length)];piece.style.width=(2+Math.random()*4)+"px";piece.style.height=(3+Math.random()*7)+"px";piece.style.opacity=(.65+Math.random()*.35);piece.style.filter="blur("+(Math.random()*.45)+"px)";holder.appendChild(piece);setTimeout(()=>piece.remove(),8000);}
 }
 
 /* LIVE COUNTDOWN TO 19 JANUARY 2027 */
