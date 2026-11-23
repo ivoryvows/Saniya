@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
 <title>Zoha & Ashal | Nikah Invitation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 :root{--pink:#f1c5d5;--pink-dark:#d99bb5;--beige:#8a6a50;--gold:#c9a46b;--ink:#745363}
 *{box-sizing:border-box}
@@ -14,9 +16,13 @@ html{scroll-behavior:smooth;background:#fbf1f4}
 body{margin:0;overflow-x:hidden;font-family:'Cormorant Garamond',serif;color:var(--ink);background:#fbf1f4;text-align:center}
 body.locked{overflow:hidden}
 img,video{max-width:100%}
+
+/* FALLING WHITE DOTS */
 #snow{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}
 .snow-dot{position:absolute;top:-15px;border-radius:50%;background:rgba(255,255,255,.95);animation:fall linear infinite}
 @keyframes fall{to{transform:translate3d(25px,110vh,0)}}
+
+/* OPENING DOORS */
 #door-screen{position:fixed;inset:0;z-index:200;display:flex;perspective:1800px;perspective-origin:50% 50%;background:#f9edf1;overflow:hidden}
 .door-half{position:absolute;top:0;width:50%;height:100%;overflow:hidden;transform-style:preserve-3d;transition:transform 2.7s cubic-bezier(.65,0,.25,1);backface-visibility:hidden;will-change:transform;background:#f9edf1}
 .door-half img{position:absolute;top:50%;height:94%;width:auto;max-width:none;max-height:94%;object-fit:contain;user-select:none;pointer-events:none;transform:translateY(-50%)}
@@ -27,11 +33,8 @@ img,video{max-width:100%}
 #door-screen.open #left-door{transform:rotateY(-115deg)}
 #door-screen.open #right-door{transform:rotateY(115deg)}
 #door-tap{position:absolute;z-index:220;left:50%;top:50%;transform:translate(-50%,-50%);width:min(48vw,230px);height:min(25vh,220px);border:0;padding:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
-#door-tap::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;transform:translate(-50%,-50%);border-radius:50%;background:rgba(255,246,218,.95);box-shadow:0 0 8px 4px rgba(255,235,180,.9),0 0 20px 10px rgba(220,174,91,.65),0 0 38px 18px rgba(201,164,107,.28);opacity:.65;transition:opacity .3s}
-#door-tap.led-on{pointer-events:none}
-#door-tap.led-on::after{animation:goldLed 1.65s ease forwards}
-@keyframes goldLed{0%{opacity:.65;background:#fff4d4;box-shadow:0 0 8px 4px #fff1c7,0 0 20px 10px rgba(220,174,91,.7),0 0 38px 18px rgba(201,164,107,.3)}45%{opacity:1;background:#fff8df;box-shadow:0 0 15px 8px #fff3ce,0 0 35px 19px rgba(231,190,111,.95),0 0 65px 30px rgba(201,164,107,.6)}100%{opacity:0;box-shadow:0 0 22px 12px #fff0c5,0 0 55px 28px rgba(220,174,91,.7),0 0 85px 40px rgba(201,164,107,.25)}}
 #door-screen.disappear{visibility:hidden;pointer-events:none}
+
 .poster-section{position:relative;width:100%;min-height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f8edf1}
 .poster-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .poster-section>:not(.poster-bg){position:relative;z-index:2}
@@ -81,32 +84,108 @@ img,video{max-width:100%}
 .heart-year{font-size:20px;letter-spacing:3px}
 #scratchCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:3;touch-action:none;cursor:crosshair}
 .scratch-hint{font-size:14px;color:#b77e98;font-style:italic}
+
+/* GLITTER CONFETTI */
 #confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:5}
-.confetti-piece{position:absolute;top:-22px;width:4px;height:7px;border-radius:2px;animation:confettiFall 4.8s linear forwards;box-shadow:0 0 7px rgba(255,232,190,.95)}
-@keyframes confettiFall{to{transform:translate3d(var(--drift),110vh,0) rotate(850deg);opacity:0}}
+.confetti-piece{position:absolute;top:-25px;width:5px;height:5px;border-radius:50%;animation:confettiFall linear forwards;box-shadow:0 0 7px currentColor,0 0 14px rgba(255,255,255,.9)}
+@keyframes confettiFall{
+  0%{transform:translate3d(0,-10px,0) rotate(0deg) scale(.5);opacity:0}
+  12%{opacity:1}
+  50%{transform:translate3d(var(--drift),50vh,0) rotate(360deg) scale(1.2);opacity:1}
+  100%{transform:translate3d(calc(var(--drift)*-0.4),110vh,0) rotate(800deg) scale(.3);opacity:0}
+}
 .revealed #scratchCanvas{opacity:0;transition:opacity .6s;pointer-events:none}
 
-/* EVENT VIDEOS */
-.video-section{min-height:100svh;padding:30px 14px;flex-direction:column;gap:14px}
-.video-card{position:relative;z-index:2;width:min(68vw,275px);padding:6px;background:linear-gradient(135deg,#fff5e5,#c49b62,#fff4e2,#b78c52);border-radius:5px;box-shadow:0 8px 30px rgba(52,32,25,.25)}
-.video-card::before{content:"";position:absolute;inset:4px;border:1px solid rgba(255,255,255,.85);pointer-events:none;z-index:2}
-.video-card video{display:block;width:100%;aspect-ratio:9/16;object-fit:contain;background:#181313}
-#milad-section .video-card{margin-top:36px;width:min(58vw,225px);transform:none}
-#nikkah-section .video-card{margin-top:-8px;width:min(72vw,270px)}
-#nikkah-section .video-card video{aspect-ratio:9/16}
-.map-button{position:relative;z-index:2;display:inline-block;margin-top:4px;padding:10px 25px;border:1px solid #c9a46b;border-radius:30px;background:rgba(255,249,245,.92);color:#876c58;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;letter-spacing:.4px;text-decoration:none;box-shadow:0 4px 15px rgba(60,40,30,.13)}
-.map-button:active{transform:scale(.97)}
+/* EVENT VIDEO SECTIONS */
+.video-section{
+  position:relative;
+  width:100%;
+  height:100svh;
+  min-height:100svh;
+  padding:0;
+  display:block;
+  overflow:hidden;
+  background:#f8edf1;
+}
+
+/* Smaller videos with background visible around them */
+.video-card{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:17%;
+  transform:translateX(-50%);
+  width:88%;
+  height:62%;
+  margin:0;
+  padding:0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  overflow:hidden;
+}
+.video-card::before{display:none}
+.video-card video{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:contain;
+  object-position:center;
+  background:transparent;
+  border:0;
+  border-radius:0;
+}
+
+/* Milad video starts a little lower to leave room for its text */
+#milad-section .video-card{
+  top:24%;
+  height:55%;
+}
+
+/* Nikkah video position */
+#nikkah-section .video-card{
+  top:17%;
+  height:62%;
+}
+
+/* Map buttons BELOW the videos */
+.map-button{
+  position:absolute;
+  z-index:4;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  display:inline-block;
+  margin:0;
+  padding:10px 25px;
+  border:1px solid #c9a46b;
+  border-radius:30px;
+  background:rgba(255,249,245,.94);
+  color:#876c58;
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;
+  font-weight:600;
+  letter-spacing:.4px;
+  text-decoration:none;
+  box-shadow:0 4px 15px rgba(60,40,30,.13);
+  white-space:nowrap;
+}
+.map-button:active{transform:translateX(-50%) scale(.97)}
 
 /* COUNTDOWN VIDEO */
 #countdown{min-height:100svh;padding:0;background:#f7edf0}
 .countdown-video{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;background:#f7edf0;z-index:1}
-.live-countdown{position:absolute!important;left:50%;top:auto;bottom:11%;transform:translateX(-50%);z-index:4!important;width:calc(100% - 22px);max-width:430px;color:#f1a9c5;text-shadow:0 1px 8px rgba(70,25,45,.55);pointer-events:none}
+
+/* Countdown numbers moved upward */
+.live-countdown{position:absolute!important;left:50%;top:auto;bottom:16%;transform:translateX(-50%);z-index:4!important;width:calc(100% - 22px);max-width:430px;color:#f1a9c5;text-shadow:0 1px 8px rgba(70,25,45,.55);pointer-events:none}
 .countdown-units{display:flex;align-items:flex-start;justify-content:space-between;width:100%;gap:0}
 .countdown-unit{min-width:48px;display:flex;flex-direction:column;align-items:center}
-.countdown-unit:nth-child(1){transform:translateX(7px)}
-.countdown-unit:nth-child(2){transform:translateX(4px)}
-.countdown-unit:nth-child(3){transform:translateX(-4px)}
-.countdown-unit:nth-child(4){transform:translateX(-9px)}
+.countdown-unit:nth-child(1){transform:translateX(14px)}
+.countdown-unit:nth-child(2){transform:translateX(9px)}
+.countdown-unit:nth-child(3){transform:translateX(-9px)}
+.countdown-unit:nth-child(4){transform:translateX(-16px)}
 .countdown-number{font-family:'Cormorant Garamond',serif;font-size:clamp(25px,7vw,34px);font-weight:700;line-height:1;color:#f3b2ca}
 .countdown-label{margin-top:6px;font-family:'DM Sans',sans-serif;font-size:9px;font-weight:600;letter-spacing:1.2px;color:#f7c7d9;text-transform:uppercase}
 
@@ -125,6 +204,7 @@ img,video{max-width:100%}
 #music-button{position:fixed;z-index:150;bottom:20px;right:19px;width:43px;height:43px;border-radius:50%;border:1px solid rgba(255,255,255,.9);background:rgba(224,176,196,.94);color:white;box-shadow:0 3px 15px rgba(120,70,90,.25);display:grid;place-items:center;font-size:21px;cursor:pointer}
 #music-button.playing{animation:musicPulse 2s infinite}
 @keyframes musicPulse{50%{box-shadow:0 0 0 8px rgba(224,176,196,.18)}}
+
 @media(max-width:480px){
 .door-half img{height:94%;max-height:94%}
 #door-tap{width:58vw;height:23vh}
@@ -135,20 +215,22 @@ img,video{max-width:100%}
 .couple-name{font-size:30px}
 .dua-content{padding:55px 24px 20px}
 .quran-box{margin-top:235px}
-.video-section{padding:22px 8px}
-#milad-section .video-card{margin-top:32px;width:min(58vw,210px)}
-#nikkah-section .video-card{margin-top:-8px;width:min(72vw,260px)}
-#nikkah-section .video-card video{aspect-ratio:9/16}
-.live-countdown{bottom:10%}
+.live-countdown{bottom:15%}
 .countdown-unit{min-width:45px}
 .countdown-label{font-size:8px;letter-spacing:.8px}
 .gift-content{padding:17px 14px}
+.video-card{width:90%;height:60%}
+#milad-section .video-card{top:24%;height:54%}
+#nikkah-section .video-card{top:17%;height:61%}
+.map-button{bottom:22px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
+
 <body class="locked">
 <div id="snow"></div>
+
 <audio id="backgroundMusic" src="nasheed.mp3" preload="auto" loop></audio>
 <button id="music-button" aria-label="Play or pause music">♪</button>
 
@@ -159,6 +241,7 @@ img,video{max-width:100%}
 </div>
 
 <main id="invitation">
+
 <section class="poster-section" id="family">
   <img class="poster-bg" src="family.jpg" alt="">
   <div class="family-content">
@@ -177,8 +260,10 @@ img,video{max-width:100%}
     <div class="with-text script">with</div>
     <div class="couple-name">Ashal Ali</div>
     <div class="family-relation">(S/O Mrs. Tahera & Mr. Rafik Ali)</div>
-    <div class="family-closing">As they begin their journey together,
-      <span>Your duas and blessings are the most precious gifts we seek.</span>
+    <div class="family-closing">
+      As they begin their journey together,
+      <span>Your duas and blessings are</span>
+      <span>the most precious gifts we seek.</span>
     </div>
   </div>
 </section>
@@ -204,7 +289,7 @@ img,video{max-width:100%}
   </div>
 </section>
 
-<!-- COUNTDOWN: moved directly after DUA -->
+<!-- COUNTDOWN -->
 <section class="poster-section" id="countdown">
   <img class="poster-bg" src="countdown.jpg" alt="">
   <video class="countdown-video" id="countdown-video" src="countdown.mov" muted playsinline preload="auto"></video>
@@ -218,171 +303,480 @@ img,video{max-width:100%}
   </div>
 </section>
 
+<!-- SCRATCH HEART -->
 <section class="poster-section" id="scratch-section">
   <img class="poster-bg" src="scratch.jpg" alt="">
   <div id="confetti"></div>
   <div class="scratch-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
   <h2 class="scratch-title">A beautiful day, a blessed beginning...</h2>
   <p class="scratch-subtitle">A special date awaits you</p>
+
   <div class="heart-scratch-wrap" id="heartWrap">
     <svg viewBox="0 0 300 270" preserveAspectRatio="none">
-      <defs><linearGradient id="heartGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#fffaf1"/><stop offset="50%" stop-color="#eadbc8"/><stop offset="100%" stop-color="#cdb596"/>
-      </linearGradient></defs>
+      <defs>
+        <linearGradient id="heartGradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#fffaf1"/>
+          <stop offset="50%" stop-color="#eadbc8"/>
+          <stop offset="100%" stop-color="#cdb596"/>
+        </linearGradient>
+      </defs>
       <path d="M150 255 C125 225 15 160 15 85 C15 20 95 0 150 65 C205 0 285 20 285 85 C285 160 175 225 150 255Z" fill="url(#heartGradient)" stroke="#fff" stroke-width="3"/>
     </svg>
-    <div class="heart-date"><div class="heart-day">19</div><div class="heart-month">JANUARY</div><div class="heart-year">2027</div></div>
+
+    <div class="heart-date">
+      <div class="heart-day">19</div>
+      <div class="heart-month">JANUARY</div>
+      <div class="heart-year">2027</div>
+    </div>
+
     <canvas id="scratchCanvas"></canvas>
   </div>
+
   <div class="scratch-hint" id="scratchHint">Scratch the heart to reveal the date ♥</div>
 </section>
 
+<!-- MILAD VIDEO -->
 <section class="poster-section video-section" id="milad-section">
   <img class="poster-bg" src="event.JPG" alt="">
-  <div class="video-card"><video class="scroll-video" id="milad-video" src="milad.mov" muted playsinline preload="metadata"></video></div>
+  <div class="video-card">
+    <video class="scroll-video" id="milad-video" src="milad.mov" muted playsinline preload="metadata"></video>
+  </div>
   <a class="map-button" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Alimentos+Banquet+Ahmedabad">View on Map ↗</a>
 </section>
 
+<!-- NIKKAH VIDEO -->
 <section class="poster-section video-section" id="nikkah-section">
   <img class="poster-bg" src="events.JPG" alt="">
-  <div class="video-card"><video class="scroll-video" id="nikkah-video" src="nikkah.MOV" muted playsinline preload="metadata"></video></div>
+  <div class="video-card">
+    <video class="scroll-video" id="nikkah-video" src="nikkah.MOV" muted playsinline preload="metadata"></video>
+  </div>
   <a class="map-button" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Golden+Pearl+Banquet+Ahmedabad">View on Map ↗</a>
 </section>
 
+<!-- GIFTS -->
 <section class="poster-section" id="gift-section">
   <img class="poster-bg" src="events.JPG" alt="">
   <div class="gift-content">
-    <h2 class="gift-heading">Gifts</h2><div class="gift-heart">♥</div>
+    <h2 class="gift-heading">Gifts</h2>
+    <div class="gift-heart">♥</div>
     <div class="gift-message">"No gift is better than your blessings. Your heartfelt duas and loving presence are all we cherish as we begin this new journey under the blessed shade and teachings of the Ahlulbayt."</div>
     <div class="gift-arabic">بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
   </div>
+
   <div class="gift-closing-frame">
     <div class="gift-closing">We can't wait to celebrate<br>with you!</div>
     <div class="gift-family">Hussain ali & Dhanani family</div>
   </div>
 </section>
+
 </main>
 
 <script>
 /* FALLING WHITE DOTS */
 const snow=document.getElementById("snow");
+
 for(let i=0;i<45;i++){
-  const dot=document.createElement("span");dot.className="snow-dot";
-  dot.style.left=Math.random()*100+"%";dot.style.animationDuration=(5+Math.random()*9)+"s";dot.style.animationDelay=(-Math.random()*12)+"s";
-  const size=2+Math.random()*3;dot.style.width=size+"px";dot.style.height=size+"px";snow.appendChild(dot);
+  const dot=document.createElement("span");
+  dot.className="snow-dot";
+  dot.style.left=Math.random()*100+"%";
+  dot.style.animationDuration=(5+Math.random()*9)+"s";
+  dot.style.animationDelay=(-Math.random()*12)+"s";
+
+  const size=2+Math.random()*3;
+  dot.style.width=size+"px";
+  dot.style.height=size+"px";
+  snow.appendChild(dot);
 }
 
 /* MUSIC */
-const music=document.getElementById("backgroundMusic"),musicButton=document.getElementById("music-button");
+const music=document.getElementById("backgroundMusic");
+const musicButton=document.getElementById("music-button");
+
 async function startMusic(){
-  try{await music.play();musicButton.classList.add("playing");musicButton.innerHTML="♫";}
-  catch(error){musicButton.classList.remove("playing");musicButton.innerHTML="♪";console.log("Music could not start. Check nasheed.mp3:",error);}
+  try{
+    await music.play();
+    musicButton.classList.add("playing");
+    musicButton.innerHTML="♫";
+  }catch(error){
+    musicButton.classList.remove("playing");
+    musicButton.innerHTML="♪";
+    console.log("Music could not start. Check nasheed.mp3:",error);
+  }
 }
-music.addEventListener("play",()=>{musicButton.classList.add("playing");musicButton.innerHTML="♫";});
-music.addEventListener("pause",()=>{musicButton.classList.remove("playing");musicButton.innerHTML="♪";});
-music.addEventListener("error",()=>console.log("nasheed.mp3 is missing or cannot be loaded."));
-document.addEventListener("pointerdown",()=>{if(music.paused)startMusic();},{once:true});
-musicButton.addEventListener("click",async e=>{e.stopPropagation();if(music.paused)await startMusic();else music.pause();});
+
+music.addEventListener("play",()=>{
+  musicButton.classList.add("playing");
+  musicButton.innerHTML="♫";
+});
+
+music.addEventListener("pause",()=>{
+  musicButton.classList.remove("playing");
+  musicButton.innerHTML="♪";
+});
+
+music.addEventListener("error",()=>{
+  console.log("nasheed.mp3 is missing or cannot be loaded.");
+});
+
+musicButton.addEventListener("click",async e=>{
+  e.stopPropagation();
+  if(music.paused)await startMusic();
+  else music.pause();
+});
 
 /* DOOR OPENING */
-const doorScreen=document.getElementById("door-screen"),doorTap=document.getElementById("door-tap");let doorOpened=false;
+const doorScreen=document.getElementById("door-screen");
+const doorTap=document.getElementById("door-tap");
+let doorOpened=false;
+
 doorTap.addEventListener("click",()=>{
-  if(doorOpened)return;doorOpened=true;startMusic();doorTap.classList.add("led-on");
-  setTimeout(()=>{doorScreen.classList.add("open");setTimeout(()=>{doorScreen.classList.add("disappear");document.body.classList.remove("locked");document.getElementById("family").scrollIntoView({behavior:"smooth",block:"start"});},2800);},1650);
+  if(doorOpened)return;
+
+  doorOpened=true;
+  startMusic();
+  doorScreen.classList.add("open");
+
+  setTimeout(()=>{
+    doorScreen.classList.add("disappear");
+    document.body.classList.remove("locked");
+
+    document.getElementById("family").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  },2800);
 });
 
 /* SCRATCH HEART */
-const canvas=document.getElementById("scratchCanvas"),ctx=canvas.getContext("2d"),heartWrap=document.getElementById("heartWrap"),scratchSection=document.getElementById("scratch-section");
-let isScratching=false,scratchRevealed=false,pixelRatio=1,lastPoint=null,pointerStart=null;
+const canvas=document.getElementById("scratchCanvas");
+const ctx=canvas.getContext("2d");
+const heartWrap=document.getElementById("heartWrap");
+const scratchSection=document.getElementById("scratch-section");
+
+let isScratching=false;
+let scratchRevealed=false;
+let pixelRatio=1;
+let lastPoint=null;
+let pointerStart=null;
+
 function heartPath(context,w,h){
-  context.beginPath();context.moveTo(w/2,h*.94);
+  context.beginPath();
+  context.moveTo(w/2,h*.94);
   context.bezierCurveTo(w*.42,h*.79,w*.05,h*.56,w*.05,h*.31);
   context.bezierCurveTo(w*.05,h*.04,w*.37,h*.02,w/2,h*.25);
   context.bezierCurveTo(w*.63,h*.02,w*.95,h*.04,w*.95,h*.31);
-  context.bezierCurveTo(w*.95,h*.56,w*.58,h*.79,w/2,h*.94);context.closePath();
+  context.bezierCurveTo(w*.95,h*.56,w*.58,h*.79,w/2,h*.94);
+  context.closePath();
 }
+
 function setupScratch(){
-  const rect=heartWrap.getBoundingClientRect();pixelRatio=window.devicePixelRatio||1;
-  canvas.width=Math.round(rect.width*pixelRatio);canvas.height=Math.round(rect.height*pixelRatio);
-  canvas.style.width=rect.width+"px";canvas.style.height=rect.height+"px";ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);
-  const w=rect.width,h=rect.height,gradient=ctx.createLinearGradient(0,0,w,h);
-  gradient.addColorStop(0,"#fffaf1");gradient.addColorStop(.5,"#eadbc8");gradient.addColorStop(1,"#cdb596");
-  ctx.save();heartPath(ctx,w,h);ctx.clip();ctx.fillStyle=gradient;ctx.fillRect(0,0,w,h);
-  for(let i=0;i<100;i++){const x=Math.random()*w,y=Math.random()*h;ctx.fillStyle="rgba(255,255,255,"+(.15+Math.random()*.5)+")";ctx.beginPath();ctx.arc(x,y,Math.random()*1.5+.3,0,Math.PI*2);ctx.fill();}
-  ctx.restore();ctx.save();heartPath(ctx,w,h);ctx.strokeStyle="rgba(255,255,255,.9)";ctx.lineWidth=2;ctx.stroke();ctx.restore();
+  const rect=heartWrap.getBoundingClientRect();
+  pixelRatio=window.devicePixelRatio||1;
+
+  canvas.width=Math.round(rect.width*pixelRatio);
+  canvas.height=Math.round(rect.height*pixelRatio);
+  canvas.style.width=rect.width+"px";
+  canvas.style.height=rect.height+"px";
+
+  ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);
+
+  const w=rect.width,h=rect.height;
+  const gradient=ctx.createLinearGradient(0,0,w,h);
+
+  gradient.addColorStop(0,"#fffaf1");
+  gradient.addColorStop(.5,"#eadbc8");
+  gradient.addColorStop(1,"#cdb596");
+
+  ctx.save();
+  heartPath(ctx,w,h);
+  ctx.clip();
+  ctx.fillStyle=gradient;
+  ctx.fillRect(0,0,w,h);
+
+  for(let i=0;i<100;i++){
+    const x=Math.random()*w;
+    const y=Math.random()*h;
+
+    ctx.fillStyle="rgba(255,255,255,"+(.15+Math.random()*.5)+")";
+    ctx.beginPath();
+    ctx.arc(x,y,Math.random()*1.5+.3,0,Math.PI*2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+  ctx.save();
+  heartPath(ctx,w,h);
+  ctx.strokeStyle="rgba(255,255,255,.9)";
+  ctx.lineWidth=2;
+  ctx.stroke();
+  ctx.restore();
 }
-setupScratch();window.addEventListener("resize",()=>{if(!scratchRevealed)setupScratch();});
-function getPoint(e){const rect=canvas.getBoundingClientRect();return{x:e.clientX-rect.left,y:e.clientY-rect.top};}
+
+setupScratch();
+
+window.addEventListener("resize",()=>{
+  if(!scratchRevealed)setupScratch();
+});
+
+function getPoint(e){
+  const rect=canvas.getBoundingClientRect();
+  return{
+    x:e.clientX-rect.left,
+    y:e.clientY-rect.top
+  };
+}
+
 function scratchAt(e){
-  if(scratchRevealed)return;const p=getPoint(e);ctx.save();ctx.globalCompositeOperation="destination-out";ctx.lineCap="round";ctx.lineJoin="round";ctx.lineWidth=16;ctx.beginPath();
-  if(lastPoint){ctx.moveTo(lastPoint.x,lastPoint.y);ctx.lineTo(p.x,p.y);}else{ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+.1,p.y+.1);}
-  ctx.stroke();ctx.restore();lastPoint=p;
+  if(scratchRevealed)return;
+
+  const p=getPoint(e);
+
+  ctx.save();
+  ctx.globalCompositeOperation="destination-out";
+  ctx.lineCap="round";
+  ctx.lineJoin="round";
+  ctx.lineWidth=16;
+  ctx.beginPath();
+
+  if(lastPoint){
+    ctx.moveTo(lastPoint.x,lastPoint.y);
+    ctx.lineTo(p.x,p.y);
+  }else{
+    ctx.moveTo(p.x,p.y);
+    ctx.lineTo(p.x+.1,p.y+.1);
+  }
+
+  ctx.stroke();
+  ctx.restore();
+  lastPoint=p;
 }
-canvas.addEventListener("pointerdown",e=>{if(scratchRevealed)return;e.preventDefault();isScratching=true;lastPoint=null;pointerStart=getPoint(e);canvas.setPointerCapture(e.pointerId);});
+
+canvas.addEventListener("pointerdown",e=>{
+  if(scratchRevealed)return;
+
+  e.preventDefault();
+  isScratching=true;
+  lastPoint=null;
+  pointerStart=getPoint(e);
+  canvas.setPointerCapture(e.pointerId);
+});
+
 canvas.addEventListener("pointermove",e=>{
-  if(!isScratching||scratchRevealed)return;e.preventDefault();const p=getPoint(e);
-  if(pointerStart){const dx=p.x-pointerStart.x,dy=p.y-pointerStart.y;if(Math.sqrt(dx*dx+dy*dy)<4)return;lastPoint=pointerStart;pointerStart=null;}
+  if(!isScratching||scratchRevealed)return;
+
+  e.preventDefault();
+  const p=getPoint(e);
+
+  if(pointerStart){
+    const dx=p.x-pointerStart.x;
+    const dy=p.y-pointerStart.y;
+
+    if(Math.sqrt(dx*dx+dy*dy)<4)return;
+
+    lastPoint=pointerStart;
+    pointerStart=null;
+  }
+
   scratchAt(e);
 });
-canvas.addEventListener("pointerup",()=>{isScratching=false;lastPoint=null;pointerStart=null;checkScratch();});
-canvas.addEventListener("pointercancel",()=>{isScratching=false;lastPoint=null;pointerStart=null;checkScratch();});
+
+canvas.addEventListener("pointerup",()=>{
+  isScratching=false;
+  lastPoint=null;
+  pointerStart=null;
+  checkScratch();
+});
+
+canvas.addEventListener("pointercancel",()=>{
+  isScratching=false;
+  lastPoint=null;
+  pointerStart=null;
+  checkScratch();
+});
+
+/* REVEAL WHEN 50% OF HEART IS SCRATCHED */
 function checkScratch(){
-  if(scratchRevealed)return;const rect=canvas.getBoundingClientRect(),pixels=ctx.getImageData(0,0,canvas.width,canvas.height),w=rect.width,h=rect.height;let cleared=0,total=0;
-  ctx.save();heartPath(ctx,w,h);
-  for(let y=4;y<h;y+=8)for(let x=4;x<w;x+=8)if(ctx.isPointInPath(x,y)){
-    const px=Math.floor(x*pixelRatio),py=Math.floor(y*pixelRatio),index=(py*canvas.width+px)*4+3;total++;if(pixels.data[index]<100)cleared++;
+  if(scratchRevealed)return;
+
+  const rect=canvas.getBoundingClientRect();
+  const pixels=ctx.getImageData(0,0,canvas.width,canvas.height);
+  const w=rect.width,h=rect.height;
+
+  let cleared=0;
+  let total=0;
+
+  ctx.save();
+  heartPath(ctx,w,h);
+
+  for(let y=4;y<h;y+=8){
+    for(let x=4;x<w;x+=8){
+      if(ctx.isPointInPath(x,y)){
+        const px=Math.floor(x*pixelRatio);
+        const py=Math.floor(y*pixelRatio);
+        const index=(py*canvas.width+px)*4+3;
+
+        total++;
+        if(pixels.data[index]<100)cleared++;
+      }
+    }
   }
+
   ctx.restore();
-  if(total>0&&cleared/total*100>=50){scratchRevealed=true;scratchSection.classList.add("revealed");document.getElementById("scratchHint").innerHTML="19 January 2027 ♥";launchConfetti();}
+
+  if(total>0&&cleared/total>=0.50){
+    scratchRevealed=true;
+    scratchSection.classList.add("revealed");
+
+    document.getElementById("scratchHint").innerHTML="19 January 2027 ♥";
+
+    launchConfetti();
+  }
 }
+
+/* GOLD + PINK GLITTER FALLS FROM THE TOP */
 function launchConfetti(){
   const holder=document.getElementById("confetti");
-  for(let i=0;i<150;i++){const piece=document.createElement("span");piece.className="confetti-piece";piece.style.left=Math.random()*100+"%";piece.style.setProperty("--drift",(Math.random()*200-100)+"px");piece.style.animationDelay=Math.random()*2+"s";piece.style.animationDuration=(3+Math.random()*3)+"s";const colors=["#f3c8da","#e8d9c5","#fff","#cdb596","#f8e0e9","#f6d98b","#fff4d6"];piece.style.background=colors[Math.floor(Math.random()*colors.length)];piece.style.width=(2+Math.random()*4)+"px";piece.style.height=(3+Math.random()*7)+"px";piece.style.opacity=(.65+Math.random()*.35);piece.style.filter="blur("+(Math.random()*.45)+"px)";holder.appendChild(piece);setTimeout(()=>piece.remove(),8000);}
+
+  const colors=[
+    "#f3c8da",
+    "#e8d9c5",
+    "#fff",
+    "#cdb596",
+    "#f8e0e9",
+    "#f6d98b",
+    "#fff4d6",
+    "#e8b6cb"
+  ];
+
+  for(let i=0;i<190;i++){
+    const piece=document.createElement("span");
+    piece.className="confetti-piece";
+
+    piece.style.left=Math.random()*100+"%";
+    piece.style.top=(-10-Math.random()*100)+"px";
+
+    piece.style.setProperty(
+      "--drift",
+      (Math.random()*220-110)+"px"
+    );
+
+    piece.style.animationDelay=(Math.random()*1.8)+"s";
+    piece.style.animationDuration=(3.5+Math.random()*3)+"s";
+
+    const color=colors[Math.floor(Math.random()*colors.length)];
+
+    piece.style.background=color;
+    piece.style.color=color;
+
+    const size=2+Math.random()*5;
+    piece.style.width=size+"px";
+    piece.style.height=size+"px";
+
+    piece.style.opacity=.9;
+    piece.style.filter="blur("+(Math.random()*.35)+"px)";
+
+    holder.appendChild(piece);
+
+    setTimeout(()=>piece.remove(),8500);
+  }
 }
 
 /* LIVE COUNTDOWN TO 19 JANUARY 2027 */
 const eventDate=new Date(2027,0,19,0,0,0).getTime();
-const daysEl=document.getElementById("days"),hoursEl=document.getElementById("hours"),minutesEl=document.getElementById("minutes"),secondsEl=document.getElementById("seconds");
+
+const daysEl=document.getElementById("days");
+const hoursEl=document.getElementById("hours");
+const minutesEl=document.getElementById("minutes");
+const secondsEl=document.getElementById("seconds");
+
 function updateLiveCountdown(){
-  let remaining=Math.max(0,eventDate-Date.now()),days=Math.floor(remaining/86400000);remaining%=86400000;
-  const hours=Math.floor(remaining/3600000);remaining%=3600000;const minutes=Math.floor(remaining/60000);remaining%=60000;const seconds=Math.floor(remaining/1000);
-  daysEl.textContent=String(days).padStart(2,"0");hoursEl.textContent=String(hours).padStart(2,"0");minutesEl.textContent=String(minutes).padStart(2,"0");secondsEl.textContent=String(seconds).padStart(2,"0");
+  let remaining=Math.max(0,eventDate-Date.now());
+
+  const days=Math.floor(remaining/86400000);
+  remaining%=86400000;
+
+  const hours=Math.floor(remaining/3600000);
+  remaining%=3600000;
+
+  const minutes=Math.floor(remaining/60000);
+  remaining%=60000;
+
+  const seconds=Math.floor(remaining/1000);
+
+  daysEl.textContent=String(days).padStart(2,"0");
+  hoursEl.textContent=String(hours).padStart(2,"0");
+  minutesEl.textContent=String(minutes).padStart(2,"0");
+  secondsEl.textContent=String(seconds).padStart(2,"0");
 }
-updateLiveCountdown();setInterval(updateLiveCountdown,1000);
+
+updateLiveCountdown();
+setInterval(updateLiveCountdown,1000);
 
 /* SCROLL VIDEO AUTOPLAY */
-const miladVideo=document.getElementById("milad-video"),nikkahVideo=document.getElementById("nikkah-video"),countdownVideo=document.getElementById("countdown-video");
-const COUNTDOWN_LOOP_START=8*60,COUNTDOWN_LOOP_END=42*60;
+const miladVideo=document.getElementById("milad-video");
+const nikkahVideo=document.getElementById("nikkah-video");
+const countdownVideo=document.getElementById("countdown-video");
+
+const COUNTDOWN_LOOP_START=8*60;
+const COUNTDOWN_LOOP_END=42*60;
+
 const videoSections=[
   {section:document.getElementById("countdown"),video:countdownVideo},
   {section:document.getElementById("milad-section"),video:miladVideo},
   {section:document.getElementById("nikkah-section"),video:nikkahVideo}
 ];
+
 const videoObserver=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
-    const video=entry.target.querySelector("video");if(!video)return;
+    const video=entry.target.querySelector("video");
+    if(!video)return;
+
     if(entry.isIntersecting){
-      if(video===countdownVideo&&!video.dataset.started){video.dataset.started="true";try{countdownVideo.currentTime=0;}catch(e){}}
-      video.play().catch(error=>console.log("Video autoplay issue. Check the video file and browser settings:",error));
+      if(video===countdownVideo&&!video.dataset.started){
+        video.dataset.started="true";
+        try{countdownVideo.currentTime=0;}catch(e){}
+      }
+
+      video.play().catch(error=>{
+        console.log("Video autoplay issue. Check the video file and browser settings:",error);
+      });
     }else{
-      video.pause();if(video!==countdownVideo){try{video.currentTime=0;}catch(e){}}
+      video.pause();
+
+      if(video!==countdownVideo){
+        try{video.currentTime=0;}catch(e){}
+      }
     }
   });
 },{threshold:.35});
+
 videoSections.forEach(item=>videoObserver.observe(item.section));
 
-/* Countdown plays from 0 once, then loops only 8:00–42:00 */
+/* COUNTDOWN PLAYS FROM 0 ONCE, THEN LOOPS ONLY 8:00–42:00 */
 countdownVideo.addEventListener("timeupdate",()=>{
   if(!isFinite(countdownVideo.duration))return;
+
   if(countdownVideo.currentTime>=COUNTDOWN_LOOP_END-.15){
     countdownVideo.currentTime=COUNTDOWN_LOOP_START;
-    if(!countdownVideo.paused)countdownVideo.play().catch(()=>{});
+
+    if(!countdownVideo.paused){
+      countdownVideo.play().catch(()=>{});
+    }
   }
 });
+
 countdownVideo.addEventListener("canplay",()=>{
   const rect=document.getElementById("countdown").getBoundingClientRect();
-  const visible=rect.top<window.innerHeight*.65&&rect.bottom>window.innerHeight*.35;
-  if(visible)countdownVideo.play().catch(error=>console.log("Countdown video could not autoplay:",error));
+
+  const visible=
+    rect.top<window.innerHeight*.65&&
+    rect.bottom>window.innerHeight*.35;
+
+  if(visible){
+    countdownVideo.play().catch(error=>{
+      console.log("Countdown video could not autoplay:",error);
+    });
+  }
 });
 </script>
 </body>
