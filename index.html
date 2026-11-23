@@ -12,9 +12,9 @@
 
 <style>
 :root {
-  --pink:#e8b7c9;
-  --pink-dark:#bd829d;
-  --pink-light:#fff4f7;
+  --pink:#f1c5d5;
+  --pink-dark:#d99bb5;
+  --beige:#eadcc8;
   --gold:#c9a46b;
   --ink:#745363;
 }
@@ -54,7 +54,6 @@ img,video { max-width:100%; }
   top:-15px;
   border-radius:50%;
   background:rgba(255,255,255,.95);
-  box-shadow:0 0 5px rgba(255,255,255,.8);
   animation:fall linear infinite;
 }
 
@@ -62,7 +61,7 @@ img,video { max-width:100%; }
   to { transform:translate3d(25px,110vh,0); }
 }
 
-/* DOUBLE DOOR */
+/* DOUBLE DOORS */
 
 #door-screen {
   position:fixed;
@@ -98,7 +97,6 @@ img,video { max-width:100%; }
   pointer-events:none;
 }
 
-/* Real hinge at the outside edge */
 #left-door {
   left:0;
   transform-origin:left center;
@@ -113,8 +111,6 @@ img,video { max-width:100%; }
 
 #right-door img { right:0; }
 
-/* Rotate the doors, never slide them */
-
 #door-screen.open #left-door {
   transform:rotateY(-115deg);
 }
@@ -123,77 +119,63 @@ img,video { max-width:100%; }
   transform:rotateY(115deg);
 }
 
+#door-tap {
+  position:absolute;
+  inset:0;
+  z-index:220;
+  width:100%;
+  height:100%;
+  border:0;
+  padding:0;
+  background:transparent;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+#door-tap::after {
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:7px;
+  height:7px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 8px 3px rgba(255,255,255,.9),
+             0 0 18px 7px rgba(255,220,235,.65);
+  opacity:.7;
+}
+
+#door-tap.led-on {
+  pointer-events:none;
+}
+
+#door-tap.led-on::after {
+  animation:ledGlow 1.6s ease forwards;
+}
+
+@keyframes ledGlow {
+  0% {
+    opacity:.7;
+    box-shadow:0 0 8px 3px #fff,
+               0 0 18px 7px rgba(255,220,235,.65);
+  }
+  50% {
+    opacity:1;
+    box-shadow:0 0 15px 7px #fff,
+               0 0 38px 17px rgba(255,220,235,.95);
+  }
+  100% {
+    opacity:0;
+    box-shadow:0 0 25px 12px #fff,
+               0 0 55px 25px rgba(255,220,235,.8);
+  }
+}
+
 #door-screen.disappear {
   visibility:hidden;
   pointer-events:none;
-}
-
-.door-handle {
-  position:absolute;
-  z-index:210;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:83px;
-  height:83px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:rgba(255,255,255,.12);
-  border:2px solid rgba(255,255,255,.85);
-  box-shadow:0 0 20px rgba(255,255,255,.55),
-             inset 0 0 15px rgba(255,255,255,.5);
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-  transition:opacity .4s;
-}
-
-.door-handle::before {
-  content:"";
-  position:absolute;
-  inset:-8px;
-  border-radius:50%;
-  border:2px solid rgba(255,255,255,.7);
-}
-
-.door-handle.start {
-  pointer-events:none;
-}
-
-.door-handle.start .led-ring {
-  opacity:1;
-  animation:ledTurn 1.6s linear forwards;
-}
-
-.door-handle.start {
-  animation:handleGlow 1.6s ease forwards;
-}
-
-@keyframes ledTurn {
-  to { transform:rotate(360deg); }
-}
-
-@keyframes handleGlow {
-  50% { box-shadow:0 0 35px #fff,0 0 55px #e9b6ca; }
-  100% { opacity:0; }
-}
-
-.led-ring {
-  position:absolute;
-  inset:-9px;
-  border-radius:50%;
-  border:3px solid transparent;
-  border-top-color:#fff;
-  border-right-color:#f6c9da;
-  opacity:0;
-}
-
-.handle-center {
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:0 0 15px #fff,0 0 25px #e9b6ca;
 }
 
 /* GENERAL SECTIONS */
@@ -218,27 +200,15 @@ img,video { max-width:100%; }
   z-index:0;
 }
 
-.poster-content {
-  position:relative;
-  z-index:2;
-  width:100%;
-  padding:30px 18px;
-  text-align:center;
-}
-
 .script {
   font-family:'Great Vibes',cursive;
   font-weight:400;
 }
 
-.serif {
-  font-family:'Cormorant Garamond',serif;
-}
-
 /* FAMILY INVITATION */
 
 #family {
-  min-height:110svh;
+  min-height:100svh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -248,149 +218,195 @@ img,video { max-width:100%; }
   position:relative;
   z-index:2;
   width:100%;
-  max-width:450px;
+  max-width:420px;
   margin:auto;
-  padding:24px 20px;
-  color:white;
+  padding:18px 20px;
+  color:var(--beige);
   text-align:center;
-  text-shadow:0 1px 5px rgba(75,40,55,.35);
+  text-shadow:none;
 }
 
 .family-arabic {
-  font-size:24px;
-  line-height:1.7;
-  color:white;
-  margin-bottom:2px;
+  font-size:19px;
+  line-height:1.5;
+  color:var(--beige);
+  margin-bottom:1px;
+  text-shadow:none;
 }
 
 .family-translation {
-  font-size:15px;
+  font-size:12px;
   font-style:italic;
-  color:white;
-  margin-bottom:14px;
+  color:var(--beige);
+  margin-bottom:9px;
+  text-shadow:none;
 }
 
 .family-greeting {
-  font-size:35px;
-  color:#f4c6d9;
-  margin:7px 0;
-  line-height:1.2;
+  font-size:27px;
+  color:var(--pink);
+  margin:5px 0;
+  line-height:1.15;
+  text-shadow:none;
 }
 
 .family-blessing {
-  font-size:17px;
+  font-size:14px;
   font-weight:400;
-  margin:7px 0;
-  color:white;
+  margin:5px 0 8px;
+  color:var(--beige);
+  text-shadow:none;
 }
 
 .parents {
   font-family:'Great Vibes',cursive;
-  font-size:27px;
+  font-size:22px;
   font-weight:700;
-  color:#f6ccdc;
-  margin:7px 0 12px;
+  color:var(--pink);
+  margin:5px 0 9px;
+  text-shadow:none;
 }
 
 .family-description {
-  font-size:16px;
-  line-height:1.35;
-  margin:9px auto;
-  max-width:390px;
+  font-size:14px;
+  line-height:1.3;
+  margin:7px auto;
+  max-width:360px;
+  color:var(--beige);
+  text-shadow:none;
 }
 
-.couple-name {
+/* AUSPICIOUS LINE NOW MATCHES BEIGE TEXT */
+
+.family-description .auspicious {
+  display:block;
+  color:var(--beige);
+  font-size:14px;
   font-family:'Cormorant Garamond',serif;
-  font-size:34px;
-  font-weight:700;
-  color:#f5c8d9;
-  margin:7px 0 0;
-  line-height:1.1;
-}
-
-.family-relation {
-  font-size:15px;
-  margin:2px 0 7px;
-}
-
-.with-text {
-  font-size:25px;
-  color:#f4c6d9;
+  font-weight:400;
   margin:3px 0;
 }
 
+.family-description .nikah-line {
+  display:block;
+  color:var(--beige);
+  font-size:15px;
+  margin:2px 0;
+}
+
+.couple-name {
+  font-family:'Great Vibes',cursive;
+  font-size:32px;
+  font-weight:400;
+  color:var(--pink);
+  margin:5px 0 0;
+  line-height:1.15;
+  text-shadow:none;
+}
+
+.family-relation {
+  font-size:12px;
+  margin:1px 0 5px;
+  color:var(--beige);
+  text-shadow:none;
+}
+
+.with-text {
+  font-size:20px;
+  color:var(--pink);
+  margin:2px 0;
+  text-shadow:none;
+}
+
 .family-closing {
-  font-size:16px;
+  font-size:13px;
   font-style:italic;
-  line-height:1.35;
-  margin-top:13px;
+  line-height:1.25;
+  margin-top:8px;
+  color:var(--beige);
+  text-shadow:none;
+}
+
+.family-closing span {
+  display:block;
+  color:var(--beige);
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;
+  font-style:italic;
 }
 
 /* DUA SECTION */
 
-#dua { min-height:100svh; }
+#dua {
+  min-height:100svh;
+}
 
 .dua-content {
   position:relative;
   z-index:2;
-  width:min(100%,470px);
+  width:min(100%,430px);
   margin:auto;
-  padding:25px 17px;
+  padding:25px 25px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  gap:18px;
   text-align:center;
 }
 
 .dua-box {
   width:100%;
-  background:rgba(255,250,252,.88);
-  border:1px solid rgba(219,169,191,.9);
-  border-radius:15px;
-  padding:19px 16px;
-  box-shadow:0 8px 25px rgba(120,70,90,.10);
+  background:transparent;
+  border:0;
+  border-radius:0;
+  padding:0;
+  box-shadow:none;
   color:#966b7e;
   text-align:center;
 }
 
 .dua-welcome {
-  font-size:18px;
+  font-size:15px;
   line-height:1.35;
 }
 
 .dua-heading {
   font-family:'Great Vibes',cursive;
-  font-size:30px;
+  font-size:25px;
   line-height:1.2;
   color:#bd829d;
-  margin:7px 0;
+  margin:5px 0;
 }
 
 .dua-translation {
-  font-size:17px;
-  line-height:1.4;
+  font-size:14px;
+  line-height:1.35;
+}
+
+/* LOWER QURAN TEXT MOVED FURTHER DOWN */
+
+.quran-box {
+  margin-top:135px;
 }
 
 .quran-arabic {
-  font-size:23px;
-  line-height:1.9;
+  font-size:19px;
+  line-height:1.8;
   direction:rtl;
   color:#9d7085;
 }
 
 .quran-english {
-  font-size:16px;
-  line-height:1.4;
+  font-size:13px;
+  line-height:1.35;
   font-style:italic;
-  margin-top:9px;
+  margin-top:7px;
 }
 
 .surah {
-  font-size:15px;
+  font-size:12px;
   color:#bd829d;
-  margin-top:10px;
+  margin-top:7px;
 }
 
 /* HEART SCRATCH */
@@ -399,28 +415,28 @@ img,video { max-width:100%; }
   min-height:100svh;
   padding:35px 15px;
   flex-direction:column;
-  gap:12px;
+  gap:10px;
   background:radial-gradient(circle at center,#fff9fb,#f5e1e9);
 }
 
 .scratch-bismillah {
-  font-size:23px;
+  font-size:20px;
   color:#b77e98;
   direction:rtl;
 }
 
 .scratch-title {
   font-family:'Great Vibes',cursive;
-  font-size:30px;
+  font-size:26px;
   font-weight:400;
   color:#b77e98;
   margin:0;
 }
 
 .scratch-subtitle {
-  font-size:17px;
+  font-size:14px;
   color:#9e7186;
-  margin:0 0 8px;
+  margin:0 0 6px;
 }
 
 .heart-scratch-wrap {
@@ -453,18 +469,18 @@ img,video { max-width:100%; }
 }
 
 .heart-day {
-  font-size:60px;
+  font-size:54px;
   font-weight:600;
   line-height:.9;
 }
 
 .heart-month {
-  font-size:25px;
+  font-size:22px;
   letter-spacing:3px;
 }
 
 .heart-year {
-  font-size:23px;
+  font-size:20px;
   letter-spacing:3px;
 }
 
@@ -479,7 +495,7 @@ img,video { max-width:100%; }
 }
 
 .scratch-hint {
-  font-size:17px;
+  font-size:14px;
   color:#b77e98;
   font-style:italic;
 }
@@ -520,14 +536,14 @@ img,video { max-width:100%; }
   min-height:100svh;
   padding:30px 14px;
   flex-direction:column;
-  gap:16px;
+  gap:14px;
 }
 
 .video-card {
   position:relative;
   z-index:2;
-  width:min(94%,600px);
-  padding:8px;
+  width:min(78vw,330px);
+  padding:7px;
   background:linear-gradient(135deg,#fff5e5,#c49b62,#fff4e2,#b78c52);
   border-radius:5px;
   box-shadow:0 8px 30px rgba(52,32,25,.25);
@@ -545,49 +561,46 @@ img,video { max-width:100%; }
 .video-card video {
   display:block;
   width:100%;
-  aspect-ratio:16/9;
+  aspect-ratio:9/16;
   object-fit:contain;
   background:#181313;
 }
 
-.map-box {
+/* MILAD VIDEO MOVED DOWN */
+
+#milad-section .video-card {
+  margin-top:48px;
+}
+
+#nikkah-section .video-card {
+  margin-top:-15px;
+}
+
+/* MAP BUTTON */
+
+.map-button {
   position:relative;
   z-index:2;
-  width:min(90%,450px);
-  background:rgba(255,249,245,.94);
-  border:1px solid #d2ad78;
-  border-radius:9px;
-  padding:12px;
-  box-shadow:0 6px 20px rgba(60,40,30,.18);
-  text-align:center;
-  color:#876c58;
-}
-
-.map-title {
-  font-family:'Great Vibes',cursive;
-  font-size:28px;
-  font-weight:400;
-  margin:0 0 9px;
-  color:#9d7952;
-}
-
-.map-box iframe {
-  display:block;
-  width:100%;
-  height:165px;
-  border:0;
-  border-radius:6px;
-}
-
-.map-link {
   display:inline-block;
-  margin-top:8px;
-  color:#9d7952;
+  margin-top:4px;
+  padding:10px 25px;
+  border:1px solid #c9a46b;
+  border-radius:30px;
+  background:rgba(255,249,245,.92);
+  color:#876c58;
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;
+  font-weight:600;
+  letter-spacing:.4px;
   text-decoration:none;
-  font-size:15px;
+  box-shadow:0 4px 15px rgba(60,40,30,.13);
 }
 
-/* COUNTDOWN VIDEO */
+.map-button:active {
+  transform:scale(.97);
+}
+
+/* COUNTDOWN */
 
 #countdown {
   min-height:100svh;
@@ -608,18 +621,21 @@ img,video { max-width:100%; }
 
 #gift-section {
   min-height:100svh;
-  padding:25px 15px;
+  padding:30px 18px;
+  flex-direction:column;
+  gap:18px;
 }
 
-.gift-content {
+.gift-content,
+.gift-closing-frame {
   position:relative;
   z-index:2;
-  width:min(100%,460px);
-  padding:24px 18px;
+  width:min(100%,430px);
+  padding:18px 18px;
   margin:auto;
-  background:rgba(255,249,251,.87);
+  background:rgba(255,249,251,.88);
   border:1px solid rgba(218,171,192,.85);
-  border-radius:16px;
+  border-radius:14px;
   box-shadow:0 10px 30px rgba(110,70,85,.12);
   text-align:center;
   color:#936c7d;
@@ -627,45 +643,50 @@ img,video { max-width:100%; }
 
 .gift-heading {
   font-family:'Great Vibes',cursive;
-  font-size:38px;
+  font-size:32px;
   font-weight:400;
   color:#bd829d;
   margin:0;
 }
 
 .gift-heart {
-  font-size:30px;
+  font-size:24px;
   color:#e3a7bf;
-  margin:5px 0;
+  margin:3px 0;
 }
 
 .gift-message {
-  font-size:17px;
-  line-height:1.45;
+  font-size:14px;
+  line-height:1.4;
 }
 
 .gift-arabic {
   direction:rtl;
-  font-size:23px;
-  line-height:1.8;
+  font-size:19px;
+  line-height:1.7;
   color:#a27388;
-  margin-top:12px;
+  margin-top:9px;
+}
+
+.gift-closing-frame {
+  width:min(100%,360px);
+  padding:17px 18px;
 }
 
 .gift-closing {
   font-family:'Great Vibes',cursive;
-  font-size:30px;
+  font-size:28px;
   color:#bd829d;
   font-weight:400;
   line-height:1.2;
-  margin-top:12px;
+  margin:0;
 }
 
 .gift-family {
-  font-size:18px;
+  font-size:15px;
   font-weight:600;
   color:#a27388;
-  margin-top:10px;
+  margin-top:8px;
 }
 
 /* MUSIC BUTTON */
@@ -675,8 +696,8 @@ img,video { max-width:100%; }
   z-index:150;
   bottom:20px;
   right:19px;
-  width:47px;
-  height:47px;
+  width:43px;
+  height:43px;
   border-radius:50%;
   border:1px solid rgba(255,255,255,.9);
   background:rgba(224,176,196,.94);
@@ -684,7 +705,7 @@ img,video { max-width:100%; }
   box-shadow:0 3px 15px rgba(120,70,90,.25);
   display:grid;
   place-items:center;
-  font-size:22px;
+  font-size:21px;
   cursor:pointer;
 }
 
@@ -699,22 +720,24 @@ img,video { max-width:100%; }
 /* SMALL SCREEN */
 
 @media(max-width:480px) {
-  .family-content { padding:20px 17px; }
-  .family-description { font-size:15px; }
-  .family-closing { font-size:15px; }
-  .couple-name { font-size:32px; }
-  .dua-box { padding:17px 14px; }
-  .video-section { padding:25px 8px; }
-  .map-box iframe { height:150px; }
-  .gift-content { padding:21px 15px; }
+  .family-content { padding:15px 16px; }
+  .family-description { font-size:13px; }
+  .family-description .auspicious { font-size:13px; }
+  .family-closing,
+  .family-closing span { font-size:12px; }
+  .couple-name { font-size:30px; }
+  .dua-content { padding:20px 24px; }
+  .quran-box { margin-top:135px; }
+  .video-section { padding:22px 8px; }
+  .video-card { width:min(78vw,310px); }
+  #milad-section .video-card { margin-top:42px; }
+  #nikkah-section .video-card { margin-top:-12px; }
+  .gift-content { padding:17px 14px; }
 }
-
-/* REDUCE MOTION ACCESSIBILITY */
 
 @media(prefers-reduced-motion:reduce) {
   html { scroll-behavior:auto; }
 }
-
 </style>
 </head>
 
@@ -738,10 +761,7 @@ img,video { max-width:100%; }
     <img src="right.jpg" alt="Right door">
   </div>
 
-  <button class="door-handle" id="door-handle" aria-label="Open invitation">
-    <span class="led-ring"></span>
-    <span class="handle-center"></span>
-  </button>
+  <button id="door-tap" aria-label="Tap to open invitation"></button>
 
 </div>
 
@@ -755,7 +775,7 @@ img,video { max-width:100%; }
 
   <div class="family-content">
 
-    <div class="family-arabic">وَخَلَقْنَٰكُمْ أَزْوَجًا</div>
+    <div class="family-arabic">وَخَلَقْنَٰكُمْ أَزْوَزًا</div>
 
     <div class="family-translation">
       "And We created you in pairs"
@@ -774,7 +794,10 @@ img,video { max-width:100%; }
     </div>
 
     <div class="family-description">
-      Graciously Invite You to Celebrate the Auspicious Occasion of the Nikah Ceremony of their Daughter
+      Graciously Invite You to Celebrate
+      <span class="auspicious">The Auspicious Occasion</span>
+      <span class="nikah-line">of the Nikah Ceremony</span>
+      of their Daughter
     </div>
 
     <div class="couple-name">
@@ -788,7 +811,7 @@ img,video { max-width:100%; }
     <div class="with-text script">with</div>
 
     <div class="couple-name">
-      -Ashal Ali
+      Ashal Ali
     </div>
 
     <div class="family-relation">
@@ -796,7 +819,8 @@ img,video { max-width:100%; }
     </div>
 
     <div class="family-closing">
-      As they begin their journey together, your duas and blessings are the most precious gifts we seek.
+      As they begin their journey together,
+      <span>Your duas and blessings are the most precious gifts we seek.</span>
     </div>
 
   </div>
@@ -827,7 +851,7 @@ img,video { max-width:100%; }
 
     </div>
 
-    <div class="dua-box">
+    <div class="dua-box quran-box">
 
       <div class="quran-arabic">
         وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
@@ -921,25 +945,13 @@ img,video { max-width:100%; }
     </video>
   </div>
 
-  <div class="map-box">
-
-    <h3 class="map-title">Milad Celebration</h3>
-
-    <iframe
-      loading="lazy"
-      title="Alimentos Banquet Ahmedabad"
-      src="https://maps.google.com/maps?q=Alimentos%20Banquet%20Ahmedabad&output=embed">
-    </iframe>
-
-    <a
-      class="map-link"
-      target="_blank"
-      rel="noopener"
-      href="https://www.google.com/maps/search/?api=1&query=Alimentos+Banquet+Ahmedabad">
-      View Location on Google Maps ↗
-    </a>
-
-  </div>
+  <a
+    class="map-button"
+    target="_blank"
+    rel="noopener"
+    href="https://www.google.com/maps/search/?api=1&query=Alimentos+Banquet+Ahmedabad">
+    View on Map ↗
+  </a>
 
 </section>
 
@@ -960,25 +972,13 @@ img,video { max-width:100%; }
     </video>
   </div>
 
-  <div class="map-box">
-
-    <h3 class="map-title">Nikah Ceremony</h3>
-
-    <iframe
-      loading="lazy"
-      title="Golden Pearl Banquet Ahmedabad"
-      src="https://maps.google.com/maps?q=Golden%20Pearl%20Banquet%20Ahmedabad&output=embed">
-    </iframe>
-
-    <a
-      class="map-link"
-      target="_blank"
-      rel="noopener"
-      href="https://www.google.com/maps/search/?api=1&query=Golden+Pearl+Banquet+Ahmedabad">
-      View Location on Google Maps ↗
-    </a>
-
-  </div>
+  <a
+    class="map-button"
+    target="_blank"
+    rel="noopener"
+    href="https://www.google.com/maps/search/?api=1&query=Golden+Pearl+Banquet+Ahmedabad">
+    View on Map ↗
+  </a>
 
 </section>
 
@@ -1016,6 +1016,10 @@ img,video { max-width:100%; }
     <div class="gift-arabic">
       بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
     </div>
+
+  </div>
+
+  <div class="gift-closing-frame">
 
     <div class="gift-closing">
       We can't wait to celebrate<br>
@@ -1075,6 +1079,7 @@ async function startMusic(){
   }catch(error){
 
     musicStarted=false;
+    musicButton.classList.remove("playing");
     musicButton.innerHTML="♪";
     console.log("Music could not start. Check nasheed.mp3:",error);
 
@@ -1097,8 +1102,6 @@ music.addEventListener("error",function(){
   console.log("nasheed.mp3 is missing or cannot be loaded.");
 });
 
-/* First visitor tap */
-
 document.addEventListener("pointerdown",function(){
 
   if(music.paused){
@@ -1106,8 +1109,6 @@ document.addEventListener("pointerdown",function(){
   }
 
 },{once:true});
-
-/* Music button */
 
 musicButton.addEventListener("click",async function(e){
 
@@ -1124,11 +1125,11 @@ musicButton.addEventListener("click",async function(e){
 /* DOOR OPENING */
 
 const doorScreen=document.getElementById("door-screen");
-const doorHandle=document.getElementById("door-handle");
+const doorTap=document.getElementById("door-tap");
 
 let doorOpened=false;
 
-doorHandle.addEventListener("click",function(){
+doorTap.addEventListener("click",function(){
 
   if(doorOpened) return;
 
@@ -1136,15 +1137,11 @@ doorHandle.addEventListener("click",function(){
 
   startMusic();
 
-  doorHandle.classList.add("start");
-
-  /* Complete LED rotation first */
+  doorTap.classList.add("led-on");
 
   setTimeout(function(){
 
     doorScreen.classList.add("open");
-
-    /* Let the doors swing open fully */
 
     setTimeout(function(){
 
@@ -1174,6 +1171,8 @@ const scratchSection=document.getElementById("scratch-section");
 let isScratching=false;
 let scratchRevealed=false;
 let pixelRatio=1;
+let lastPoint=null;
+let pointerStart=null;
 
 function heartPath(context,w,h){
 
@@ -1296,43 +1295,87 @@ function scratchAt(e){
   ctx.save();
 
   ctx.globalCompositeOperation="destination-out";
+  ctx.lineCap="round";
+  ctx.lineJoin="round";
+  ctx.lineWidth=16;
+
   ctx.beginPath();
-  ctx.arc(p.x,p.y,23,0,Math.PI*2);
-  ctx.fill();
+
+  if(lastPoint){
+    ctx.moveTo(lastPoint.x,lastPoint.y);
+    ctx.lineTo(p.x,p.y);
+  }else{
+    ctx.moveTo(p.x,p.y);
+    ctx.lineTo(p.x+.1,p.y+.1);
+  }
+
+  ctx.stroke();
 
   ctx.restore();
 
-  checkScratch();
+  lastPoint=p;
 
 }
 
+/* A TAP DOES NOT SCRATCH: THE VISITOR MUST DRAG */
+
 canvas.addEventListener("pointerdown",function(e){
 
+  if(scratchRevealed) return;
+
+  e.preventDefault();
+
   isScratching=true;
+  lastPoint=null;
+  pointerStart=getPoint(e);
 
   canvas.setPointerCapture(e.pointerId);
-
-  scratchAt(e);
 
 });
 
 canvas.addEventListener("pointermove",function(e){
 
-  if(!isScratching) return;
+  if(!isScratching || scratchRevealed) return;
+
+  e.preventDefault();
+
+  const p=getPoint(e);
+
+  if(pointerStart){
+
+    const dx=p.x-pointerStart.x;
+    const dy=p.y-pointerStart.y;
+
+    if(Math.sqrt(dx*dx+dy*dy)<4) return;
+
+    lastPoint=pointerStart;
+    pointerStart=null;
+
+  }
 
   scratchAt(e);
 
 });
 
 canvas.addEventListener("pointerup",function(){
+
   isScratching=false;
+  lastPoint=null;
+  pointerStart=null;
+  checkScratch();
+
 });
 
 canvas.addEventListener("pointercancel",function(){
+
   isScratching=false;
+  lastPoint=null;
+  pointerStart=null;
+  checkScratch();
+
 });
 
-/* Count cleared pixels only INSIDE the heart */
+/* Count cleared pixels only inside the heart */
 
 function checkScratch(){
 
@@ -1466,8 +1509,6 @@ const videoObserver=new IntersectionObserver(function(entries){
     }else{
 
       video.pause();
-
-      /* Event videos restart when visitor returns */
 
       if(video!==countdownVideo){
 
