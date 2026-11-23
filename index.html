@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,7 +66,7 @@ img,video{max-width:100%}
 .poster-section>:not(.poster-bg){position:relative;z-index:2}
 .script{font-family:'Great Vibes',cursive;font-weight:400}
 
-/* FAMILY - SMOOTH TEXT ENTRANCE */
+/* FAMILY */
 #family{min-height:100svh;display:flex;align-items:center;justify-content:center}
 .family-content{
   position:relative;z-index:2;width:100%;max-width:385px;margin:auto;
@@ -165,7 +166,7 @@ img,video{max-width:100%}
   text-shadow:0 1px 8px rgba(255,255,255,.85);
 }
 
-/* BOTH VIDEO FRAMES - SAME SIZE, SLIGHTLY NARROWER */
+/* BOTH VIDEO FRAMES - SAME SIZE */
 .video-card{
   position:relative;z-index:2;
   width:min(80vw,370px);
@@ -180,20 +181,21 @@ img,video{max-width:100%}
   box-shadow:0 8px 25px rgba(110,70,85,.15);
   overflow:hidden;
 }
-..video-card video{
+
+/* ORIGINAL VIDEO PROPORTIONS - NO HORIZONTAL STRETCH */
+.video-card video{
   display:block;
-  width:115%;
+  width:100%;
   height:100%;
-  max-width:none;
-  object-fit:fill;
+  max-width:100%;
+  object-fit:contain;
   object-position:center;
   background:transparent;
   border:0;
   border-radius:20px;
   position:relative;
-  left:50%;
-  transform:translateX(-50%);
-}
+  left:auto;
+  transform:none;
 }
 
 /* MILAD AND NIKKAH - IDENTICAL FRAME DIMENSIONS */
@@ -239,13 +241,10 @@ img,video{max-width:100%}
   width:100%;gap:0;
 }
 .countdown-unit{min-width:48px;display:flex;flex-direction:column;align-items:center}
-
-/* DAYS MORE RIGHT AND SECONDS MORE LEFT */
-.countdown-unit:nth-child(1){transform:translateX(22px)}
-.countdown-unit:nth-child(2){transform:translateX(3px)}
-.countdown-unit:nth-child(3){transform:translateX(-5px)}
-.countdown-unit:nth-child(4){transform:translateX(-37px)}
-
+.countdown-unit:nth-child(1){transform:translateX(28px)}
+.countdown-unit:nth-child(2){transform:translateX(1px)}
+.countdown-unit:nth-child(3){transform:translateX(-2px)}
+.countdown-unit:nth-child(4){transform:translateX(-42px)}
 .countdown-number{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(25px,7vw,34px);font-weight:700;
@@ -257,7 +256,7 @@ img,video{max-width:100%}
   color:#f7c7d9;text-transform:uppercase;
 }
 
-/* GIFTS - SMALLER FRAMES */
+/* GIFTS */
 #gift-section{
   min-height:100svh;height:100svh;
   padding:12px 16px 30px;
@@ -282,7 +281,17 @@ img,video{max-width:100%}
 .gift-heart{font-size:21px;color:#e3a7bf;margin:2px 0}
 .gift-message{font-size:13px;line-height:1.35}
 .gift-arabic{direction:rtl;font-size:17px;line-height:1.6;color:#a27388;margin-top:7px}
-.gift-closing-frame{width:min(82%,320px);padding:11px 14px}
+
+/* CLOSING FRAME - SAME WIDTH AS VIDEO FRAMES */
+.gift-closing-frame{
+  width:min(80vw,370px);
+  min-height:150px;
+  padding:20px 14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
 .gift-closing{font-family:'Great Vibes',cursive;font-size:25px;color:#bd829d;font-weight:400;line-height:1.2;margin:0}
 .gift-family{font-size:14px;font-weight:600;color:#a27388;margin-top:6px}
 
@@ -315,7 +324,7 @@ img,video{max-width:100%}
   .gift-heading{font-size:27px}
   .gift-message{font-size:12px}
   .gift-arabic{font-size:16px;margin-top:6px}
-  .gift-closing-frame{width:82%;padding:10px 12px}
+  .gift-closing-frame{width:80vw;min-height:140px;padding:16px 12px}
   .gift-closing{font-size:23px}
   .gift-family{font-size:13px}
   .video-section{
@@ -463,7 +472,7 @@ img,video{max-width:100%}
 
 <!-- MILAD VIDEO -->
 <section class="poster-section video-section" id="milad-section">
-  <img class="poster-bg" src="scratch.jpg" alt="">
+  <img class="poster-bg" src="events.JPG" alt="">
   <h2 class="event-heading">Join Us for the Celebrations</h2>
   <div class="video-card">
     <video class="scroll-video" id="milad-video" src="milad.mov" muted playsinline preload="metadata"></video>
@@ -473,16 +482,16 @@ img,video{max-width:100%}
 
 <!-- NIKKAH VIDEO -->
 <section class="poster-section video-section" id="nikkah-section">
-  <img class="poster-bg" src="scratch.jpg" alt="">
+  <img class="poster-bg" src="events.JPG" alt="">
   <div class="video-card">
     <video class="scroll-video" id="nikkah-video" src="nikkah.MOV" muted playsinline preload="metadata"></video>
   </div>
   <a class="map-button" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Golden+Pearl+Banquet+Ahmedabad">View on Map ↗</a>
 </section>
 
-<!-- GIFTS -->
+<!-- GIFTS / CLOSING -->
 <section class="poster-section" id="gift-section">
-  <img class="poster-bg" src="scratch.jpg" alt="">
+  <img class="poster-bg" src="events.JPG" alt="">
 
   <div class="gift-content">
     <h2 class="gift-heading">Gifts</h2>
@@ -801,7 +810,6 @@ const miladVideo=document.getElementById("milad-video");
 const nikkahVideo=document.getElementById("nikkah-video");
 const countdownVideo=document.getElementById("countdown-video");
 
-/* Countdown loops from 5:22 to 42:00 */
 const COUNTDOWN_LOOP_START=5*60+22;
 const COUNTDOWN_LOOP_END=42*60;
 
@@ -836,7 +844,7 @@ const videoObserver=new IntersectionObserver(entries=>{
 
 videoSections.forEach(item=>videoObserver.observe(item.section));
 
-/* COUNTDOWN PLAYS FROM THE START, THEN LOOPS FROM 5:22 TO 42:00 */
+/* COUNTDOWN LOOPS FROM 5:22 TO 42:00 */
 countdownVideo.addEventListener("timeupdate",()=>{
   if(!isFinite(countdownVideo.duration))return;
 
