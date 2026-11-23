@@ -84,32 +84,43 @@ img,video { max-width:100%; }
   transition:transform 2.7s cubic-bezier(.65,0,.25,1);
   backface-visibility:hidden;
   will-change:transform;
+  background:#f9edf1;
 }
 
 .door-half img {
   position:absolute;
-  top:0;
-  width:200%;
-  height:100%;
+  top:50%;
+  height:94%;
+  width:auto;
   max-width:none;
-  object-fit:fill;
+  max-height:94%;
+  object-fit:contain;
   user-select:none;
   pointer-events:none;
+  transform:translateY(-50%);
 }
+
+/* INNER EDGES FACE THE CENTRE:
+   LEFT IMAGE SHOWS ITS RIGHT EDGE.
+   RIGHT IMAGE SHOWS ITS LEFT EDGE. */
 
 #left-door {
   left:0;
   transform-origin:left center;
 }
 
-#left-door img { left:0; }
+#left-door img {
+  right:0;
+}
 
 #right-door {
   right:0;
   transform-origin:right center;
 }
 
-#right-door img { right:0; }
+#right-door img {
+  left:0;
+}
 
 #door-screen.open #left-door {
   transform:rotateY(-115deg);
@@ -119,12 +130,16 @@ img,video { max-width:100%; }
   transform:rotateY(115deg);
 }
 
+/* CENTRAL Z&A TAP AREA */
+
 #door-tap {
   position:absolute;
-  inset:0;
   z-index:220;
-  width:100%;
-  height:100%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(48vw,230px);
+  height:min(25vh,220px);
   border:0;
   padding:0;
   background:transparent;
@@ -132,19 +147,24 @@ img,video { max-width:100%; }
   -webkit-tap-highlight-color:transparent;
 }
 
+/* GOLD LED GLOW - NO EXTRA BUTTON OR CIRCLE */
+
 #door-tap::after {
   content:"";
   position:absolute;
   left:50%;
   top:50%;
-  width:7px;
-  height:7px;
+  width:14px;
+  height:14px;
   transform:translate(-50%,-50%);
   border-radius:50%;
-  background:#fff;
-  box-shadow:0 0 8px 3px rgba(255,255,255,.9),
-             0 0 18px 7px rgba(255,220,235,.65);
-  opacity:.7;
+  background:rgba(255,246,218,.95);
+  box-shadow:
+    0 0 8px 4px rgba(255,235,180,.9),
+    0 0 20px 10px rgba(220,174,91,.65),
+    0 0 38px 18px rgba(201,164,107,.28);
+  opacity:.65;
+  transition:opacity .3s;
 }
 
 #door-tap.led-on {
@@ -152,24 +172,32 @@ img,video { max-width:100%; }
 }
 
 #door-tap.led-on::after {
-  animation:ledGlow 1.6s ease forwards;
+  animation:goldLed 1.65s ease forwards;
 }
 
-@keyframes ledGlow {
+@keyframes goldLed {
   0% {
-    opacity:.7;
-    box-shadow:0 0 8px 3px #fff,
-               0 0 18px 7px rgba(255,220,235,.65);
+    opacity:.65;
+    background:#fff4d4;
+    box-shadow:
+      0 0 8px 4px #fff1c7,
+      0 0 20px 10px rgba(220,174,91,.7),
+      0 0 38px 18px rgba(201,164,107,.3);
   }
-  50% {
+  45% {
     opacity:1;
-    box-shadow:0 0 15px 7px #fff,
-               0 0 38px 17px rgba(255,220,235,.95);
+    background:#fff8df;
+    box-shadow:
+      0 0 15px 8px #fff3ce,
+      0 0 35px 19px rgba(231,190,111,.95),
+      0 0 65px 30px rgba(201,164,107,.6);
   }
   100% {
     opacity:0;
-    box-shadow:0 0 25px 12px #fff,
-               0 0 55px 25px rgba(255,220,235,.8);
+    box-shadow:
+      0 0 22px 12px #fff0c5,
+      0 0 55px 28px rgba(220,174,91,.7),
+      0 0 85px 40px rgba(201,164,107,.25);
   }
 }
 
@@ -198,6 +226,13 @@ img,video { max-width:100%; }
   height:100%;
   object-fit:cover;
   z-index:0;
+}
+
+/* Keep all section content above its background image */
+
+.poster-section > :not(.poster-bg) {
+  position:relative;
+  z-index:2;
 }
 
 .script {
@@ -275,8 +310,6 @@ img,video { max-width:100%; }
   color:var(--beige);
   text-shadow:none;
 }
-
-/* AUSPICIOUS LINE NOW MATCHES BEIGE TEXT */
 
 .family-description .auspicious {
   display:block;
@@ -383,8 +416,6 @@ img,video { max-width:100%; }
   line-height:1.35;
 }
 
-/* LOWER QURAN TEXT MOVED FURTHER DOWN */
-
 .quran-box {
   margin-top:135px;
 }
@@ -416,7 +447,14 @@ img,video { max-width:100%; }
   padding:35px 15px;
   flex-direction:column;
   gap:10px;
-  background:radial-gradient(circle at center,#fff9fb,#f5e1e9);
+  background:#f5e8ed;
+}
+
+/* Actual scratch.jpg background */
+
+#scratch-section .poster-bg {
+  object-fit:cover;
+  object-position:center;
 }
 
 .scratch-bismillah {
@@ -542,8 +580,8 @@ img,video { max-width:100%; }
 .video-card {
   position:relative;
   z-index:2;
-  width:min(78vw,330px);
-  padding:7px;
+  width:min(68vw,275px);
+  padding:6px;
   background:linear-gradient(135deg,#fff5e5,#c49b62,#fff4e2,#b78c52);
   border-radius:5px;
   box-shadow:0 8px 30px rgba(52,32,25,.25);
@@ -566,11 +604,13 @@ img,video { max-width:100%; }
   background:#181313;
 }
 
-/* MILAD VIDEO MOVED DOWN */
+/* MILAD LOWER DOWN */
 
 #milad-section .video-card {
-  margin-top:48px;
+  margin-top:58px;
 }
+
+/* NIKKAH FRAME SMALLER, POSITION RETAINED */
 
 #nikkah-section .video-card {
   margin-top:-15px;
@@ -720,6 +760,16 @@ img,video { max-width:100%; }
 /* SMALL SCREEN */
 
 @media(max-width:480px) {
+  .door-half img {
+    height:94%;
+    max-height:94%;
+  }
+
+  #door-tap {
+    width:58vw;
+    height:23vh;
+  }
+
   .family-content { padding:15px 16px; }
   .family-description { font-size:13px; }
   .family-description .auspicious { font-size:13px; }
@@ -729,9 +779,19 @@ img,video { max-width:100%; }
   .dua-content { padding:20px 24px; }
   .quran-box { margin-top:135px; }
   .video-section { padding:22px 8px; }
-  .video-card { width:min(78vw,310px); }
-  #milad-section .video-card { margin-top:42px; }
-  #nikkah-section .video-card { margin-top:-12px; }
+
+  .video-card {
+    width:min(68vw,255px);
+  }
+
+  #milad-section .video-card {
+    margin-top:48px;
+  }
+
+  #nikkah-section .video-card {
+    margin-top:-12px;
+  }
+
   .gift-content { padding:17px 14px; }
 }
 
@@ -761,7 +821,7 @@ img,video { max-width:100%; }
     <img src="right.jpg" alt="Right door">
   </div>
 
-  <button id="door-tap" aria-label="Tap to open invitation"></button>
+  <button id="door-tap" aria-label="Tap the Z and A logo to open invitation"></button>
 
 </div>
 
@@ -873,9 +933,9 @@ img,video { max-width:100%; }
 
 <!-- SCRATCH DATE -->
 
-  <img class="poster-bg" src="scratch.jpg" alt="">
+<section class="poster-section" id="scratch-section">
 
-  <section class="poster-section" id="scratch-section">
+  <img class="poster-bg" src="scratch.jpg" alt="">
 
   <div id="confetti"></div>
 
@@ -1103,6 +1163,8 @@ music.addEventListener("pause",function(){
 music.addEventListener("error",function(){
   console.log("nasheed.mp3 is missing or cannot be loaded.");
 });
+
+/* MUSIC STARTS AFTER A USER GESTURE */
 
 document.addEventListener("pointerdown",function(){
 
@@ -1377,7 +1439,7 @@ canvas.addEventListener("pointercancel",function(){
 
 });
 
-/* Count cleared pixels only inside the heart */
+/* COUNT CLEARED PIXELS ONLY INSIDE THE HEART */
 
 function checkScratch(){
 
